@@ -20,7 +20,7 @@ export default function Project() {
                 </div>
                 <div className="flex flex-col gap-4 ">
                     <h2 className="text-2xl font-bold">{project.name}</h2>
-                    <ul className="flex items-center gap-2">
+                    {/* <ul className="flex items-center gap-2">
                         {
                             project.stack.map((s: { id: string, name: string, icon: string }) => (
                                 <li key={s.id}>
@@ -28,7 +28,7 @@ export default function Project() {
                                 </li>) 
                             )
                         }
-                    </ul>
+                    </ul> */}
                 </div>
             </div>
             <p className="mt-6 text-foreground">{project.project_statement}.</p>
