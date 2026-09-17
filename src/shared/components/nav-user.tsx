@@ -7,11 +7,13 @@ import { EllipsisVerticalIcon, CircleUserRoundIcon, CreditCardIcon, BellIcon, Lo
 import { useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "@/shared/components/ui/toast";
-import type { User } from "@/features/auth/types"
+import { useAuthUser } from "@/features/auth/hooks/useAuthUser"
 
-export function NavUser({ user }: { user: User }) {
+export function NavUser() {
   const { isMobile } = useSidebar()
-  
+
+  const { data: user, isPending } = useAuthUser()
+
   if (!user) return null
 
   const router = useRouter();
