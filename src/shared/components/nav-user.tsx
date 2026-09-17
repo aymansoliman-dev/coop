@@ -7,7 +7,7 @@ import { EllipsisVerticalIcon, CircleUserRoundIcon, CreditCardIcon, BellIcon, Lo
 import { useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "@/shared/components/ui/toast";
-import type { SafeUser as User } from "@/types"
+import type { User } from "@/features/auth/types"
 
 export function NavUser({ user }: { user: User }) {
   const { isMobile } = useSidebar()
@@ -25,7 +25,7 @@ export function NavUser({ user }: { user: User }) {
   }, [router])
 
   const avatarFallbackText = user.name
-    ? user.name.split(" ").map(n => n[0]).join("").substring(0, 2).toUpperCase()
+    ? user.name.split(" ").map((n: string) => n[0]).join("").substring(0, 2).toUpperCase()
     : "CN";
 
   return (
@@ -39,7 +39,7 @@ export function NavUser({ user }: { user: User }) {
             <div className="grid flex-1 text-left text-sm leading-tight">
               <span className="truncate font-medium">{user.name}</span>
               <span className="truncate text-xs text-foreground/70">
-                {user.username}
+                {user.role}
               </span>
             </div>
             <EllipsisVerticalIcon className="ml-auto size-4" />

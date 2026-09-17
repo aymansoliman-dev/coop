@@ -5,17 +5,17 @@ import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, Sideba
 import { Button } from "@/shared/components/ui/button"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/shared/components/ui/collapsible"
 import { ChevronRightIcon, BoxIcon, FolderIcon } from "lucide-react"
-import { useProjects } from '@/features/projects/hooks/useProjects'
+import { useProjectsList } from '@/features/projects/hooks/useProjectsList'
 import Image from "next/image"
 import Link from "next/link"
 import { useSearchParams } from 'next/navigation'
 
 export function NavProjects() {
   const [isOpen, setIsOpen] = useState(false)
-  const { data: projects } = useProjects()
+  const { data: projectsList } = useProjectsList()
   const currentProjectId = useSearchParams().get('id')
 
-  if (!projects) return null
+  if (!projectsList) return null
 
   return (
     <div className="mx-2">
@@ -26,7 +26,7 @@ export function NavProjects() {
               <SidebarMenuButton className={`w-full overflow-hidden h-fit py-0 pl-0 pr-2`} data-active={isOpen}>
                 <SidebarGroupLabel className="text-md font-light cursor-pointer flex-1 flex gap-3 text-white">
                   <FolderIcon fill="currentColor" />
-                  Projects
+                  projectsList
                 </SidebarGroupLabel>
                 <ChevronRightIcon className={`size-4 transition-all${isOpen? " rotate-90" : ""}`} />
                 <span className="sr-only">Toggle details</span>
@@ -35,13 +35,13 @@ export function NavProjects() {
             </CollapsibleTrigger>
           </div>
 
-          { projects.length > 0 && 
+          { projectsList.length > 0 && 
             <CollapsibleContent className="space-y-1 overflow-hidden transition-all data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down absolute right-0 left-0 pt-9 px-0">
-              {projects.map((project: any) => (
+              {projectsList.map((project: any) => (
                 <SidebarMenuItem key={project.name}>
                   <SidebarMenuButton isActive={project.id === currentProjectId} render={
                     <Link href={`/project?id=${project.id}`} className="flex items-center gap-2"> {/* TODO: Make it a dynamic URL */}
-                      { project.logo ? <Image src={project.log} alt={project.name} /> : <BoxIcon color={project.theme} fill={project.theme} />}
+                      { project.logo ? <Image src={project.logo} alt={project.name} width={32} height={32} /> : <BoxIcon color={project.theme} fill={project.theme} />}
                       <span>{project.name}</span>
                     </Link>
                   }>
