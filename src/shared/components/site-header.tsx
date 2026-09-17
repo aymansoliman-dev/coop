@@ -1,12 +1,11 @@
 "use client"
 
-import { Separator } from "@/components/ui/separator"
-import { SidebarTrigger } from "@/components/ui/sidebar"
+import { Separator } from "@/shared/components/ui/separator"
+import { SidebarTrigger } from "@/shared/components/ui/sidebar"
 import Image from "next/image"
-import coop from "../../public/coop.svg"
-import { useHeaderTitle } from "@/hooks/useHeaderTitle"
+import { useHeaderTitle } from "@/shared/hooks/useHeaderTitle"
 import { useSearchParams } from "next/navigation"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/shared/components/ui/button"
 
 export function SiteHeader() {
     const title = useHeaderTitle()
@@ -28,7 +27,7 @@ export function SiteHeader() {
                 </Button>
 
                 <Image
-                    src={coop}
+                    src={'https://res.cloudinary.com/dxlofja7z/image/upload/v1789662878/coop_dhxvx8.svg'}
                     alt="coop logo"
                     width={16}
                     height={16}

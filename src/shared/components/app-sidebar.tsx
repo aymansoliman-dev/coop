@@ -2,14 +2,13 @@
 
 import * as React from "react"
 
-import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
-import { NavSecondary } from "@/components/nav-secondary"
-import { NavUser } from "@/components/nav-user"
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader } from "@/components/ui/sidebar"
+import { NavMain } from "@/shared/components/nav-main"
+import { NavProjects } from "@/shared/components/nav-projects"
+import { NavSecondary } from "@/shared/components/nav-secondary"
+import { NavUser } from "@/shared/components/nav-user"
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader } from "@/shared/components/ui/sidebar"
 import { LayoutDashboardIcon, ListIcon, ChartBarIcon, FolderIcon, UsersIcon, CameraIcon, FileTextIcon, Settings2Icon, CircleHelpIcon, SearchIcon, DatabaseIcon, FileChartColumnIcon, FileIcon, CommandIcon } from "lucide-react"
 import Image from 'next/image'
-import coop from '../../public/coop.svg'
 import { useAuthUser } from "@/features/auth/hooks/useAuthUser"
 
 const data = {
@@ -158,7 +157,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     <Sidebar className="select-none" collapsible="offcanvas" {...props}>
       <SidebarHeader className="mb-1.5 ml-1.5 flex-row items-center gap-2">
         {/*<CommandIcon className="size-5!" />*/}
-        <Image src={coop} alt="coop logo" className="w-4 h-4" loading="eager" />
+        <Image src="https://res.cloudinary.com/dxlofja7z/image/upload/v1789662878/coop_dhxvx8.svg" width={32} height={32} alt="coop logo" className="w-4 h-4" loading="eager" />
         <span className="text-base font-light font-mono">coop</span>
       </SidebarHeader>
       {/**/}

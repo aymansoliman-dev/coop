@@ -1,15 +1,15 @@
 "use client"
 
 import { cn } from "cn"
-import { Button } from "@/components/ui/button"
-import { Field, FieldDescription, FieldGroup, FieldLabel, FieldSeparator } from "@/components/ui/field"
-import { Input } from "@/components/ui/input"
-import { Spinner } from '@/components/ui/spinner'
+import { Button } from "@/shared/components/ui/button"
+import { Field, FieldDescription, FieldGroup, FieldLabel, FieldSeparator } from "@/shared/components/ui/field"
+import { Input } from "@/shared/components/ui/input"
+import { Spinner } from '@/shared/components/ui/spinner'
 import { type ComponentProps, useEffect, useState } from 'react' // 💡 Removed useRef
 import Image from 'next/image'
 import coop from '@/../public/coop.svg'
 import { useRouter } from 'next/navigation'
-import { toast } from '@/components/ui/toast'
+import { toast } from '@/shared/components/ui/toast'
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { login } from '@/features/auth/api'
 import { EyeClosedIcon, EyeIcon } from "lucide-react"

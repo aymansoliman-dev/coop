@@ -1,7 +1,7 @@
 'use client'
 
-// import {ChartAreaInteractive} from "@/components/chart-area-interactive";
-// import {DataTable} from "@/components/data-table";
+// import {ChartAreaInteractive} from "@/shared/components/chart-area-interactive";
+// import {DataTable} from "@/shared/components/data-table";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
