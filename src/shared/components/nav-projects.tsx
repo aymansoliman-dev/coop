@@ -38,7 +38,7 @@ export function NavProjects() {
           { projectsList.length > 0 && 
             <CollapsibleContent className="space-y-1 overflow-hidden transition-all data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down absolute right-0 left-0 pt-9 px-0">
               {projectsList.map((project: any) => (
-                <SidebarMenuItem key={project.name}>
+                <SidebarMenuItem key={project.id}>
                   <SidebarMenuButton isActive={project.id === currentProjectId} render={
                     <Link href={`/project?id=${project.id}`} className="flex items-center gap-2"> {/* TODO: Make it a dynamic URL */}
                       { project.logo ? <Image src={project.logo} alt={project.name} width={32} height={32} /> : <BoxIcon color={project.theme} fill={project.theme} />}
