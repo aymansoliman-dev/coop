@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/shared/components/ui/sidebar"
-import { Button } from "@/shared/components/ui/button"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/shared/components/ui/collapsible"
 import { ChevronRightIcon, BoxIcon, FolderIcon } from "lucide-react"
 import { useProjectsList } from '@/features/projects/hooks/useProjectsList'
