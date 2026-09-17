@@ -6,7 +6,7 @@ export function useProjectsList() {
   const hasToken = typeof window !== 'undefined' && !!localStorage.getItem('token');
 
   return useQuery({
-    queryKey: ['projects'],
+    queryKey: ['projects-list'],
     queryFn: fetchProjectsList,            // Your API fetch logic
     staleTime: Infinity,               // Treat data as fresh permanently during the session
     gcTime: 1000 * 60 * 60,            // Cache in memory for 1 hour
