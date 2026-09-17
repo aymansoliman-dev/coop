@@ -9,7 +9,6 @@ import { NavUser } from "@/shared/components/nav-user"
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader } from "@/shared/components/ui/sidebar"
 import { LayoutDashboardIcon, ListIcon, ChartBarIcon, FolderIcon, UsersIcon, CameraIcon, FileTextIcon, Settings2Icon, CircleHelpIcon, SearchIcon, DatabaseIcon, FileChartColumnIcon, FileIcon, CommandIcon } from "lucide-react"
 import Image from 'next/image'
-import { useAuthUser } from "@/features/auth/hooks/useAuthUser"
 
 const data = {
   navMain: [
@@ -149,10 +148,6 @@ const data = {
 }
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
-  const { data: user, isPending } = useAuthUser()
-
-  if (!user) return null
-
   return (
     <Sidebar className="select-none" collapsible="offcanvas" {...props}>
       <SidebarHeader className="mb-1.5 ml-1.5 flex-row items-center gap-2">
@@ -170,7 +165,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarContent>
       {/**/}
       <SidebarFooter>
-        <NavUser user={user} />
+        <NavUser />
       </SidebarFooter>
     </Sidebar>
   )
