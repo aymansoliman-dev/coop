@@ -12,11 +12,8 @@ import { useAuthUser } from "@/features/auth/hooks/useAuthUser"
 export function NavUser() {
   const { isMobile } = useSidebar()
 
-  const { data: user, isPending } = useAuthUser()
-
-  if (!user) return null
-
   const router = useRouter();
+  
   const handleLogout = useCallback(() => {
     localStorage.removeItem("token")
     router.push("/login")
@@ -26,6 +23,9 @@ export function NavUser() {
     })
   }, [router])
 
+  const { data: user, isPending } = useAuthUser()
+  if (!user) return null
+  
   const avatarFallbackText = user.name
     ? user.name.split(" ").map((n: string) => n[0]).join("").substring(0, 2).toUpperCase()
     : "CN";
