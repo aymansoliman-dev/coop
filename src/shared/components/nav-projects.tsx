@@ -25,7 +25,7 @@ export function NavProjects() {
               <SidebarMenuButton className={`w-full overflow-hidden h-fit py-0 pl-0 pr-2`} data-active={isOpen}>
                 <SidebarGroupLabel className="text-md font-light cursor-pointer flex-1 flex gap-3 text-white">
                   <FolderIcon fill="currentColor" />
-                  projectsList
+                  Projects
                 </SidebarGroupLabel>
                 <ChevronRightIcon className={`size-4 transition-all${isOpen? " rotate-90" : ""}`} />
                 <span className="sr-only">Toggle details</span>
