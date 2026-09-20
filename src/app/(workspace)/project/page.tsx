@@ -17,7 +17,7 @@ export default function Project() {
             <span style={{ background: project.theme }} className={`ball absolute w-lg aspect-square rounded-full right-0 -top-8 opacity-15 blur-[640rem]`}></span>
             <div className="relative z-20 flex items-center gap-4 p-6">
                 <div className="w-32 aspect-square">
-                    { project.logo ? <Image src={project.logo} alt={project.name} className="w-full" /> : <BoxIcon color={project.theme} fill={project.theme} size="full" />}
+                    { project.logo ? <Image src={project.logo} alt={project.name} className="w-full" width={48} height={48} /> : <BoxIcon color={project.theme} fill={project.theme} size="full" />}
                 </div>
                 <div className="flex flex-col gap-4 ">
                     <h2 className="text-2xl font-bold">{project.name}</h2>
