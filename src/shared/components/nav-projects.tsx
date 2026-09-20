@@ -40,7 +40,7 @@ export function NavProjects() {
                 <SidebarMenuItem key={project.id}>
                   <SidebarMenuButton isActive={project.id === currentProjectId} render={
                     <Link href={`/project?id=${project.id}`} className="flex items-center gap-2"> {/* TODO: Make it a dynamic URL */}
-                      { project.logo ? <Image src={project.logo} alt={project.name} width={32} height={32} /> : <BoxIcon color={project.theme} fill={project.theme} />}
+                      { project.logo ? <Image src={project.logo} alt={project.name} width={16} height={16} /> : <BoxIcon color={project.theme} fill={project.theme} />}
                       <span>{project.name}</span>
                     </Link>
                   }>

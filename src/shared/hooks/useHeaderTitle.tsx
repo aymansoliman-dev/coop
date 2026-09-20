@@ -23,7 +23,7 @@ export function useHeaderTitle() {
     return (
       <div>
         <Link href={`/project?id=${project.id}`} className="flex items-center gap-2"> {/* TODO: Make it a dynamic URL */}
-          { project.logo ? <Image src={project.log} alt={project.name} className="w-4 aspect-square" /> : <BoxIcon color={project.theme} fill={project.theme} size="16" />}
+          { project.logo ? <Image src={project.logo} alt={project.name} width={16} height={16} /> : <BoxIcon color={project.theme} fill={project.theme} size="16" />}
           <span className="text-sm">{project.name}</span>
         </Link>
       </div>
