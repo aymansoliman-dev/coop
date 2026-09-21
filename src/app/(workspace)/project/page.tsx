@@ -1,14 +1,17 @@
 'use client';
 
-import { useSearchParams } from "next/navigation"
-import Image from 'next/image';
-import { BoxIcon } from 'lucide-react';
-import { useProject } from "@/features/projects/hooks/useProject";
-import { DataTable } from "@/shared/components/data-table";
+import   Image                  from 'next/image'
+import { useSearchParams      } from 'next/navigation'
+import { BoxIcon              } from 'lucide-react'
+import { useProject           } from '@/features/projects/hooks/useProject'
+import { ProjectStatement     } from '@/features/projects/components/project-statement'
+import { ProjectCollaborators } from '@/features/collaborations/components/project-collaborators'
+import { ProjectStack         } from '@/features/stack/components/project-stack'
+import { TasksTable           } from '@/features/tasks/components/tasks-table'
 
 export default function Project() {
     const projectId: string | null = useSearchParams().get('id')
-    const { data: project } = useProject(projectId!)
+    const { data: project = {} } = useProject(projectId!)
 
     if (!project || !projectId) return null
 
@@ -21,43 +24,12 @@ export default function Project() {
                 </div>
                 <div className="flex flex-col gap-4 ">
                     <h2 className="text-2xl font-bold">{project.name}</h2>
-                    <ul className="flex items-center gap-2">
-                        {
-                            project.stacks.map((stack: { id: string, name: string, icon: string }) => (
-                                <li key={stack.id}>
-                                    <Image src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${stack.icon}/${stack.icon}-original.svg`} alt={stack.name} width={24} height={24} loading="lazy" />
-                                </li>) 
-                            )
-                        }
-                    </ul>
+                    <ProjectStack />
                 </div>
             </div>
-            <div className="px-6">
-                <ul className="flex gap-2 items-center">
-                    {
-                        project.collaborators.map((collaborator: { id: string, name: string, avatar: string }) => (
-                            <li key={collaborator.id}>
-                                {collaborator.name}
-                            </li>)
-                        )
-                    }
-                </ul>
-            </div>
-
-            <p className="mt-6 text-foreground px-6">{project.project_statement}.</p>
-            <div className="mt-6">
-                {/* <ul className="flex flex-col gap-2">
-                    {
-                        project.tasks.map((task: { id: string, name: string, description: string }) => (
-                            <li key={task.id} className="flex flex-col gap-1">
-                                <h3 className="font-semibold">{task.name}</h3>
-                                <p className="text-sm text-foreground/70">{task.description}</p>
-                            </li>)
-                        )
-                    }
-                </ul> */}
-                <DataTable data={project.tasks} />
-            </div>
+            <ProjectCollaborators />
+            <ProjectStatement statement={project.project_statement} />
+            <TasksTable />
         </div>
     )
 }
