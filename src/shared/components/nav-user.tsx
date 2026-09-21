@@ -8,6 +8,7 @@ import { useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "@/shared/components/ui/toast";
 import { useAuthUser } from "@/features/auth/hooks/useAuthUser"
+import { avatarFallbackText } from "@/shared/utils"
 
 export function NavUser() {
   const { isMobile } = useSidebar()
@@ -25,10 +26,6 @@ export function NavUser() {
 
   const { data: user, isPending } = useAuthUser()
   if (!user) return null
-  
-  const avatarFallbackText = user.name
-    ? user.name.split(" ").map((n: string) => n[0]).join("").substring(0, 2).toUpperCase()
-    : "CN";
 
   return (
     <SidebarMenu>
@@ -36,7 +33,7 @@ export function NavUser() {
         <DropdownMenu>
           <DropdownMenuTrigger render={ <SidebarMenuButton size="lg" className="aria-expanded:bg-muted" /> }>
             <Avatar className="size-8 grayscale">
-              { user.avatar ? <AvatarImage src={user.avatar} alt={user.name} /> : <AvatarFallback className="rounded-lg">{avatarFallbackText}</AvatarFallback>}
+              { user.avatar ? <AvatarImage src={user.avatar} alt={user.name} /> : <AvatarFallback className="rounded-lg">{avatarFallbackText(user.name)}</AvatarFallback>}
             </Avatar>
             <div className="grid flex-1 text-left text-sm leading-tight">
               <span className="truncate font-medium">{user.name}</span>
@@ -56,7 +53,7 @@ export function NavUser() {
               <DropdownMenuLabel className="p-0 font-normal">
                 <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                   <Avatar className="size-8">
-                    { user.avatar ? <AvatarImage src={user.avatar} alt={user.name} /> : <AvatarFallback className="rounded-lg">{avatarFallbackText}</AvatarFallback>}
+                    { user.avatar ? <AvatarImage src={user.avatar} alt={user.name} /> : <AvatarFallback className="rounded-lg">{avatarFallbackText(user.name)}</AvatarFallback>}
                   </Avatar>
                   <div className="grid flex-1 text-left text-sm leading-tight">
                     <span className="truncate font-medium">{user.name}</span>
