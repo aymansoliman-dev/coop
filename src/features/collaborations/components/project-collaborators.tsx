@@ -1,14 +1,14 @@
 import { useSearchParams } from 'next/navigation'
 import { useProjectCollaborators } from '@/features/collaborations/hooks/useCollaborators'
 import { AvatarGroup, Avatar, AvatarImage, AvatarFallback } from '@/shared/components/ui/avatar'
-import { avatarFallbackText } from '@/shared/utils'
+import { avatarFallbackText } from '@/shared/lib/utils'
 
 export function ProjectCollaborators () {
     const projectId = useSearchParams().get('id') || ''
     const { data: collaborators = [] } = useProjectCollaborators(projectId)
 
     return (
-        <div className="px-6">
+        <div className="px-4 lg:px-8">
             <AvatarGroup className="flex gap-2 items-center">
                 {
                     collaborators.map((collaborator: { id: string, name: string, avatar: string }) => (

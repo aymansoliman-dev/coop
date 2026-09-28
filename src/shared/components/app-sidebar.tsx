@@ -7,8 +7,9 @@ import { NavProjects } from "@/shared/components/nav-projects"
 import { NavSecondary } from "@/shared/components/nav-secondary"
 import { NavUser } from "@/shared/components/nav-user"
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader } from "@/shared/components/ui/sidebar"
-import { LayoutDashboardIcon, ListIcon, ChartBarIcon, FolderIcon, UsersIcon, CameraIcon, FileTextIcon, Settings2Icon, CircleHelpIcon, SearchIcon, DatabaseIcon, FileChartColumnIcon, FileIcon, CommandIcon } from "lucide-react"
+import { LayoutDashboardIcon, CameraIcon, FileTextIcon, Settings2Icon, CircleHelpIcon, SearchIcon, DatabaseIcon, FileChartColumnIcon, FileIcon } from "lucide-react"
 import Image from 'next/image'
+import { NewProjectDialog } from "@/features/projects/components/new-project-dialog"
 
 const data = {
   navMain: [
@@ -165,6 +166,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarContent>
       {/**/}
       <SidebarFooter>
+        <NewProjectDialog />
         <NavUser />
       </SidebarFooter>
     </Sidebar>
