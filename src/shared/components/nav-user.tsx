@@ -8,7 +8,7 @@ import { useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "@/shared/components/ui/toast";
 import { useAuthUser } from "@/features/auth/hooks/useAuthUser"
-import { avatarFallbackText } from "@/shared/utils"
+import { avatarFallbackText } from "@/shared/lib/utils"
 
 export function NavUser() {
   const { isMobile } = useSidebar()
@@ -24,7 +24,7 @@ export function NavUser() {
     })
   }, [router])
 
-  const { data: user, isPending } = useAuthUser()
+  const { data: user } = useAuthUser()
   if (!user) return null
 
   return (
