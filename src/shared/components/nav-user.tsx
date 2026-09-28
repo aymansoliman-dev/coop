@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "@/shared/components/ui/toast";
 import { useAuthUser } from "@/features/auth/hooks/useAuthUser"
 import { avatarFallbackText } from "@/shared/lib/utils"
+import { UserSkeleton } from "@/features/auth/components/ui/user-skeleton"
 
 export function NavUser() {
   const { isMobile } = useSidebar()
@@ -24,7 +25,23 @@ export function NavUser() {
     })
   }, [router])
 
-  const { data: user } = useAuthUser()
+  const { data: user, isPending } = useAuthUser()
+
+  if (isPending) {
+    return (
+      <SidebarMenu>
+        <SidebarMenuItem>
+          <SidebarMenuButton
+            size="lg"
+            className="pointer-events-none bg-transparent! text-sidebar-foreground! transition-none"
+          >
+            <UserSkeleton />
+          </SidebarMenuButton>
+        </SidebarMenuItem>
+      </SidebarMenu>
+    )
+  }
+
   if (!user) return null
 
   return (
