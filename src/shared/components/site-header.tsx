@@ -9,7 +9,7 @@ import { Button } from "@/shared/components/ui/button"
 
 export function SiteHeader() {
     const title = useHeaderTitle()
-    const currentProjectId = useSearchParams().get('id')
+    const _currentProjectId = useSearchParams().get('id')
     
 
     return (
