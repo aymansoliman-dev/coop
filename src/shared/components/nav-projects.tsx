@@ -26,9 +26,9 @@ export function NavProjects() {
   if (!projectsList) return null         
 
   return (
-    <div className="mx-2">
-      <Collapsible open={isOpen} onOpenChange={setIsOpen} className="w-full">
-        <SidebarGroup className="group-data-[collapsible=icon]:hidden px-0">
+    <div className="mx-2 grow">
+      <Collapsible open={isOpen} onOpenChange={setIsOpen} className="w-full h-full">
+        <SidebarGroup className="h-full group-data-[collapsible=icon]:hidden px-0">
           <div className="flex items-center justify-between gap-4 z-10" onClick={() => setIsOpen(!isOpen)}>        
             <CollapsibleTrigger render={
               <SidebarMenuButton className={`w-full overflow-hidden h-fit py-0 pl-0 pr-2`} data-active={isOpen}>
@@ -44,37 +44,39 @@ export function NavProjects() {
           </div>
 
           { projectsList.length > 0 && 
-            <CollapsibleContent className="space-y-1 static transition-all data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down right-0 left-0 pt-1 px-0">
-              {projectsList.map((project: any) => (
-                <SidebarMenuItem key={project.id}>
-                  <SidebarMenuButton isActive={project.id === currentProjectId} render={
-                    <div className="project-link flex items-center justify-between gap-2 w-full">
-                      <Link href={`/project?id=${project.id}`} className="flex items-center gap-2 grow h-full p-2 pr-0">
-                        { project.logo ? <Image src={project.logo} alt={project.name} width={16} height={16} unoptimized className='h-4 w-4 shrink-0 object-cover object-center' /> : <BoxIcon color={project.theme} fill={project.theme} />}
-                        <span>{project.name}</span>
-                      </Link>
-                      { authenticatedUser?.id === project.owner_id &&
-                        <DropdownMenu>
-                          <DropdownMenuTrigger render={
-                            <button className="rounded p-2 pl-0">
-                              <MoreVerticalIcon className="size-4" color='currentColor' />
-                            </button>
-                          } />
-                          <DropdownMenuContent>
-                            <DropdownMenuGroup>
-                              <DropdownMenuItem variant="destructive" onClick={(e) => { e.preventDefault(); deleteProject(project.id) }} className="cursor-pointer">
-                                <TrashIcon />
-                                <span>Delete</span>
-                              </DropdownMenuItem>
-                            </DropdownMenuGroup>
-                          </DropdownMenuContent>
-                        </DropdownMenu>
-                      }
-                    </div>
-                  }>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+            <CollapsibleContent className="grow space-y-1 static transition-all data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down right-0 left-0 pt-1 px-0">
+              <ul className="max-h-96 overflow-y-auto">
+                {projectsList.map((project: any) => (
+                  <SidebarMenuItem key={project.id} className="list-none">
+                    <SidebarMenuButton isActive={project.id === currentProjectId} render={
+                      <div className="project-link flex items-center justify-between gap-2 w-full">
+                        <Link href={`/project?id=${project.id}`} className="flex items-center gap-2 grow h-full p-2 pr-0">
+                          { project.logo ? <Image src={project.logo} alt={project.name} width={16} height={16} unoptimized className='h-4 w-4 shrink-0 object-cover object-center' /> : <BoxIcon color={project.theme} fill={project.theme} />}
+                          <span>{project.name}</span>
+                        </Link>
+                        { authenticatedUser?.id === project.owner_id &&
+                          <DropdownMenu>
+                            <DropdownMenuTrigger render={
+                              <button className="rounded p-2 pl-0">
+                                <MoreVerticalIcon className="size-4" color='currentColor' />
+                              </button>
+                            } />
+                            <DropdownMenuContent>
+                              <DropdownMenuGroup>
+                                <DropdownMenuItem variant="destructive" onClick={(e) => { e.preventDefault(); deleteProject(project.id) }} className="cursor-pointer">
+                                  <TrashIcon />
+                                  <span>Delete</span>
+                                </DropdownMenuItem>
+                              </DropdownMenuGroup>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
+                        }
+                      </div>
+                    }>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </ul>
             </CollapsibleContent>
         }
         
