@@ -453,7 +453,7 @@ function StepperPanel({ children, className }: React.ComponentProps<'div'>) {
   const { stepper } = useStepper()
 
   return (
-    <div data-slot='stepper-panel' data-state={stepper.id} className={cn('w-full', className)}>
+    <div data-slot='stepper-panel' data-state={stepper.id} className={cn('relative grid w-full overflow-y-auto', className)}>
       {children}
     </div>
   )
@@ -479,8 +479,13 @@ function StepperContent({ value, forceMount, children, className }: StepperConte
       aria-labelledby={`stepper-tab-${value}`}
       data-slot='stepper-content'
       data-state={stepper.id}
-      className={cn('w-full', className, !isActive && forceMount && 'hidden')}
-      hidden={!isActive && forceMount}
+      aria-hidden={!isActive || undefined}
+      className={cn(
+        'col-start-1 row-start-1 w-full transition-[opacity,visibility] duration-300 ease-in-out',
+        isActive ? 'visible opacity-100' : 'invisible pointer-events-none opacity-0',
+        className
+      )}
+      inert={!isActive || undefined}
     >
       {children}
     </div>
