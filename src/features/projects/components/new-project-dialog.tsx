@@ -152,29 +152,30 @@ export function NewProjectDialog() {
 
               return true
             }}
-            className='flex justify-center gap-10 max-lg:flex-col max-lg:items-start'
+            className='flex h-full flex-col justify-center gap-6 md:flex-row'
             orientation='vertical'
+            responsive
           >
-            <StepperNav className='w-60'>
+            <StepperNav className='w-full md:w-60'>
               {steps.map((step, index) => (
-                <StepperItem key={step.id} stepId={step.id} className='relative items-start'>
-                  <StepperTrigger type="button" tabIndex={-1} className='items-start gap-2.5 pb-15 last:pb-0'>
+                <StepperItem key={step.id} stepId={step.id} className='relative items-center md:items-start'>
+                  <StepperTrigger type="button" tabIndex={-1} className='items-center gap-2.5 md:items-start md:pb-15 md:last:pb-0'>
                     <StepperIndicator>{index + 1}</StepperIndicator>
-                    <div className='text-left'>
-                      <div className="flex items-center gap-1">
-                        <StepperTitle>{step.title}</StepperTitle>
-                        { step.optional && <span className="text-xs text-muted-foreground">(Optional)</span>}
-                      </div>
-                      <StepperDescription>{step.description}</StepperDescription>
+                    <div className='hidden text-left md:block'>
+                        <div className="flex items-center gap-1">
+                          <StepperTitle>{step.title}</StepperTitle>
+                          { step.optional && <span className="text-xs text-muted-foreground">(Optional)</span>}
+                        </div>
+                        <StepperDescription>{step.description}</StepperDescription>
                     </div>
                   </StepperTrigger>
                   {index < steps.length - 1 && (
-                    <StepperSeparator className='absolute inset-y-0 top-[calc(50%-22px)] left-2 group-data-[orientation=vertical]/stepper-nav:h-15' />
+                    <StepperSeparator className='mx-1 min-w-16 self-center group-data-[orientation=vertical]/stepper-nav:absolute group-data-[orientation=vertical]/stepper-nav:inset-y-0 group-data-[orientation=vertical]/stepper-nav:top-[calc(50%-22px)] group-data-[orientation=vertical]/stepper-nav:left-2 group-data-[orientation=vertical]/stepper-nav:min-w-0 group-data-[orientation=vertical]/stepper-nav:h-15' />
                   )}
                 </StepperItem>
               ))}
             </StepperNav>
-            <StepperPanel className='w-xs h-full text-center text-sm sm:w-116'>
+            <StepperPanel className='min-h-0 w-full text-center text-sm md:w-116'>
               {steps.map(step => (
                 <StepperContent key={step.id} value={step.id} forceMount className='h-full'>
                   <div className='bg-muted border-primary/15 flex flex-col justify-between gap-4 rounded-lg border-2 border-dashed p-4 md:p-8 h-full'>

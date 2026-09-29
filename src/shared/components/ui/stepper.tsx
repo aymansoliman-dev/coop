@@ -163,8 +163,9 @@ function Stepper({
 
   // Determine effective orientation when responsive behavior is enabled.
   const effectiveOrientation: StepperOrientation = useMemo(() => {
-    if (responsive && orientation === 'horizontal') {
-      return isMdUp ? 'horizontal' : 'vertical'
+    if (responsive) {
+      if (isMdUp) return orientation
+      return orientation === 'horizontal' ? 'vertical' : 'horizontal'
     }
 
     return orientation
@@ -249,7 +250,7 @@ function StepperItem({
       <div
         data-slot='stepper-item'
         className={cn(
-          'group/step flex items-center justify-center not-last:flex-1 group-data-[orientation=horizontal]/stepper-nav:flex-row group-data-[orientation=vertical]/stepper-nav:flex-col',
+          'group/step flex items-center justify-center group-data-[orientation=vertical]/stepper-item:not-last:flex-1 group-data-[orientation=horizontal]/stepper-nav:flex-row group-data-[orientation=vertical]/stepper-nav:flex-col',
           className
         )}
         data-state={state}
@@ -429,9 +430,7 @@ function StepperDescription({ children, className }: React.ComponentProps<'div'>
 }
 
 function StepperNav({ children, className }: React.ComponentProps<'nav'>) {
-  const { stepper, orientation, configOrientation, responsive } = useStepper()
-
-  const responsiveNavClasses = responsive && configOrientation === 'horizontal' ? 'flex-col md:flex-row md:w-full' : ''
+  const { stepper, orientation } = useStepper()
 
   return (
     <nav
@@ -439,8 +438,7 @@ function StepperNav({ children, className }: React.ComponentProps<'nav'>) {
       data-state={stepper.id}
       data-orientation={orientation}
       className={cn(
-        'group/stepper-nav inline-flex data-[orientation=horizontal]:w-full data-[orientation=horizontal]:flex-row data-[orientation=vertical]:flex-col',
-        responsiveNavClasses,
+        'group/stepper-nav inline-flex data-[orientation=horizontal]:justify-between data-[orientation=horizontal]:w-full data-[orientation=horizontal]:flex-row data-[orientation=vertical]:flex-col',
         className
       )}
     >
