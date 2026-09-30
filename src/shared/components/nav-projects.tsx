@@ -32,12 +32,12 @@ export function NavProjects() {
         <SidebarGroup className="h-full px-0">
           <div className="flex items-center justify-between gap-4 z-10" onClick={() => setIsOpen(!isOpen)}>        
             <CollapsibleTrigger render={
-              <SidebarMenuButton className={`w-full overflow-hidden h-fit py-0 pl-0 pr-2`} data-active={isOpen}>
+              <SidebarMenuButton tooltip="Projects" className={`w-full overflow-hidden h-fit py-0 pl-0 pr-2`} data-active={isOpen}>
                 <SidebarGroupLabel className="text-md font-light cursor-pointer flex-1 flex gap-3 text-white">
-                  <FolderIcon fill="currentColor" />
+                  <FolderIcon fill={isOpen? "currentColor" : ""} />
                   Projects
                 </SidebarGroupLabel>
-                <ChevronRightIcon className={`size-4 transition-all${isOpen? " rotate-90" : ""}`} />
+                <ChevronRightIcon className={`group-data-[collapsible=icon]:hidden size-4 transition-all${isOpen? " rotate-90" : ""}`} />
                 <span className="sr-only">Toggle details</span>
               </SidebarMenuButton>
             }>
@@ -46,14 +46,14 @@ export function NavProjects() {
 
           { projectsList.length > 0 && 
             <CollapsibleContent className="grow space-y-1 static transition-all data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down right-0 left-0 pt-1 px-0">
-              <ScrollArea className="h-96 rounded-md border group-data-[collapsible=icon]:border-none">
+              <ScrollArea className="h-80 border group-data-[collapsible=icon]:border-none">
                 <ul>
                   {projectsList.map((project: any) => (
                     <SidebarMenuItem key={project.id} className="list-none">
-                      <SidebarMenuButton isActive={project.id === currentProjectId} render={
+                      <SidebarMenuButton tooltip={project.name} isActive={project.id === currentProjectId} render={
                         <div className="project-link flex items-center justify-between gap-2 w-full">
-                          <Link href={`/project?id=${project.id}`} className="flex items-center gap-2 grow h-full p-2 pr-0">
-                            { project.logo ? <Image src={project.logo} alt={project.name} width={16} height={16} unoptimized className='h-4 w-4 shrink-0 object-cover object-center' /> : <BoxIcon color={project.theme} fill={project.theme} />}
+                          <Link href={`/project?id=${project.id}`} className="flex items-center gap-2 grow h-full p-2 group-data-[collapsible=icon]:p-2 pr-0">
+                            { project.logo ? <Image src={project.logo} alt={project.name} width={16} height={16} unoptimized className='h-4 w-4 group-data-[collapsible=icon]:h-full group-data-[collapsible=icon]:w-full shrink-0 object-cover object-center' /> : <BoxIcon color={project.theme} fill={project.theme} size="full" />}
                             <span className="group-data-[collapsible=icon]:hidden">{project.name}</span>
                           </Link>
                           { authenticatedUser?.id === project.owner_id &&

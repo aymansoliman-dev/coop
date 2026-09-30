@@ -36,7 +36,7 @@ export function FileInput({ name }: { name: string }) {
         {files.length === 0 && (
           <FileUploadDropzone className="w-full flex flex-row cursor-pointer">
             <div className="flex flex-col items-center gap-1 text-center">
-              <div className="flex items-center justify-center rounded-full border p-2.5">
+              <div className="flex items-center justify-center border p-2.5">
                 <UploadIcon className="size-6 text-muted-foreground" />
               </div>
               <p className="text-sm font-medium">Drag & drop logo here</p>

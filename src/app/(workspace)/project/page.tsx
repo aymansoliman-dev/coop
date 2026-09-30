@@ -19,10 +19,10 @@ export default function Project() {
         <div className="relative">
             <span style={{ background: project.theme }} className={`ball absolute w-lg aspect-square rounded-full right-0 -top-8 opacity-15 blur-[640rem]`}></span>
             <div className="relative z-20 flex items-center gap-4 p-8">
-                <div className="w-32 aspect-square overflow-hidden rounded-2xl">
+                <div className="w-32 aspect-square overflow-hidden">
                     {
                         isPending ? 
-                            <div className="w-full h-full relative flex size-10 items-center justify-center overflow-hidden rounded-md bg-muted">
+                            <div className="w-full h-full relative flex size-10 items-center justify-center overflow-hidden bg-muted">
                                 <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-linear-to-r from-transparent via-white/40 to-transparent" />
                             </div>
                             : project.logo ? <Image quality={100} src={project.logo} alt={project.name + ' logo'} className="h-full w-full object-cover object-center" width={48} height={48} unoptimized /> 

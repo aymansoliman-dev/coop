@@ -191,7 +191,7 @@ export function NewProjectDialog() {
             <StepperPanel className='min-h-0 w-full text-center text-sm md:w-116'>
               {steps.map(step => (
                 <StepperContent key={step.id} value={step.id} forceMount className='h-full'>
-                  <div className='bg-muted border-primary/15 flex flex-col justify-between gap-4 rounded-lg border-2 border-dashed p-4 md:p-8 h-full'>
+                  <div className='bg-muted border-primary/15 flex flex-col justify-between gap-4 border-2 border-dashed p-4 md:p-8 h-full'>
                     <div className='space-y-2 flex flex-col gap-4 grow'>
                       <div>
                         <h3 className='text-lg font-medium'>{step.title}</h3>
