@@ -344,7 +344,7 @@ function StepperTrigger({ asChild = false, className, children, tabIndex, ...pro
       data-loading={isLoading}
       className={cn(
         'inline-flex cursor-pointer items-center outline-none disabled:pointer-events-none disabled:opacity-60',
-        'gap-2.5 rounded-full',
+        'gap-2.5',
         className
       )}
       onClick={() => stepper.goTo(step.id)}
@@ -366,7 +366,7 @@ function StepperIndicator({ children, className, variant = 'default' }: StepperI
   const { indicators } = useStepper()
 
   const base =
-    'relative flex size-8 shrink-0 items-center justify-center overflow-hidden transition-all duration-300 rounded-md text-sm font-medium'
+    'relative flex size-8 shrink-0 items-center justify-center overflow-hidden transition-all duration-300 text-sm font-medium'
 
   const defaultClasses = cn(
     'border-background bg-muted data-[state=completed]:bg-primary data-[state=completed]:text-primary-foreground data-[state=active]:bg-primary data-[state=active]:text-primary-foreground',
@@ -398,7 +398,7 @@ function StepperSeparator({ className }: React.ComponentProps<'div'>) {
       data-slot='stepper-separator'
       data-state={state}
       className={cn(
-        'bg-muted group-data-[state=completed]/step:bg-primary m-2 rounded-sm transition-colors duration-500 group-data-[orientation=horizontal]/stepper-nav:h-0.5 group-data-[orientation=horizontal]/stepper-nav:flex-1 group-data-[orientation=vertical]/stepper-nav:h-12 group-data-[orientation=vertical]/stepper-nav:w-0.5',
+        'bg-muted group-data-[state=completed]/step:bg-primary m-2 transition-colors duration-500 group-data-[orientation=horizontal]/stepper-nav:h-0.5 group-data-[orientation=horizontal]/stepper-nav:flex-1 group-data-[orientation=vertical]/stepper-nav:h-12 group-data-[orientation=vertical]/stepper-nav:w-0.5',
         className
       )}
     />

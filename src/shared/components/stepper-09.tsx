@@ -81,7 +81,7 @@ const StepperVerticalDemo = () => {
         <StepperPanel className='w-xs text-center text-sm sm:w-116'>
           {steps.map(step => (
             <StepperContent key={step.id} value={step.id}>
-              <div className='bg-muted border-primary/15 flex flex-col items-center gap-4 rounded-lg border-2 border-dashed p-4 md:p-8'>
+              <div className='bg-muted border-primary/15 flex flex-col items-center gap-4 border-2 border-dashed p-4 md:p-8'>
                 <div className='space-y-2'>
                   <h3 className='text-muted-foreground text-lg font-medium'>{step.title}</h3>
                   <p className='text-muted-foreground text-sm'>{step.description}</p>

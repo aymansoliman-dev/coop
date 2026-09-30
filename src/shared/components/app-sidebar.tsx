@@ -150,11 +150,11 @@ const data = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   return (
-    <Sidebar className="select-none" collapsible="offcanvas" {...props}>
-      <SidebarHeader className="mb-1.5 ml-1.5 flex-row items-center gap-2">
+    <Sidebar className="select-none" collapsible="icon" {...props}>
+      <SidebarHeader className="flex-row items-center gap-2 border-b h-(--header-height) p-4">
         {/*<CommandIcon className="size-5!" />*/}
         <Image src="https://res.cloudinary.com/dxlofja7z/image/upload/v1789662878/coop_dhxvx8.svg" width={32} height={32} alt="coop logo" className="w-4 h-4" loading="eager" />
-        <span className="text-base font-light font-mono">coop</span>
+        <span className="text-base font-light font-mono group-data-[collapsible=icon]:hidden">coop</span>
       </SidebarHeader>
       {/**/}
       <SidebarContent>

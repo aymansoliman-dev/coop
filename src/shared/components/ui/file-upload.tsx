@@ -886,7 +886,7 @@ function FileUploadDropzone(props: FileUploadDropzoneProps) {
         dir: context.dir,
         tabIndex: context.disabled ? undefined : 0,
         className: cn(
-          "relative flex flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed p-6 transition-colors outline-none select-none hover:bg-accent/30 focus-visible:border-ring/50 data-disabled:pointer-events-none data-dragging:border-primary/30 data-dragging:bg-accent/30 data-invalid:border-destructive data-invalid:ring-destructive/20",
+          "relative flex flex-col items-center justify-center gap-2 border-2 border-dashed p-6 transition-colors outline-none select-none hover:bg-accent/30 focus-visible:border-ring/50 data-disabled:pointer-events-none data-dragging:border-primary/30 data-dragging:bg-accent/30 data-invalid:border-destructive data-invalid:ring-destructive/20",
           className,
         ),
         onClick,
@@ -1075,7 +1075,7 @@ function FileUploadItem(props: FileUploadItemProps) {
         "aria-labelledby": nameId,
         dir: context.dir,
         className: cn(
-          "relative flex items-center gap-2.5 rounded-md border p-3",
+          "relative flex w-full min-w-0 items-center gap-2.5 border p-3",
           className,
         ),
         children: (
@@ -1154,7 +1154,7 @@ function FileUploadItemPreview(props: FileUploadItemPreviewProps) {
       {
         "aria-labelledby": itemContext.nameId,
         className: cn(
-          "relative flex size-10 shrink-0 items-center justify-center overflow-hidden rounded border bg-accent/50 [&>svg]:size-10",
+          "relative flex size-10 shrink-0 items-center justify-center overflow-hidden border bg-accent/50 [&>svg]:size-10",
           className,
         ),
         children: itemContext.fileState ? (
@@ -1193,23 +1193,26 @@ function FileUploadItemMetadata(props: FileUploadItemMetadataProps) {
 
   const context = useFileUploadContext(ITEM_METADATA_NAME)
   const itemContext = useFileUploadItemContext(ITEM_METADATA_NAME)
+  const fileName = itemContext.fileState?.file.name ?? ""
+  const extensionStart = fileName.lastIndexOf(".")
+  const fileBaseName = extensionStart > 0 ? fileName.slice(0, extensionStart) : fileName
+  const fileExtension = extensionStart > 0 ? fileName.slice(extensionStart) : ""
 
   const element = useRender({
     defaultTagName: "div",
     props: mergeProps<"div">(
       {
         dir: context.dir,
-        className: cn("flex min-w-0 flex-1 flex-col", className),
+        className: cn("flex w-0 min-w-0 flex-1 flex-col overflow-hidden", className),
         children: children ?? (
           <>
             <span
               id={itemContext.nameId}
-              className={cn(
-                "truncate text-sm font-medium",
-                size === "sm" && "text-[13px] leading-snug font-normal",
-              )}
+              title={fileName}
+              className={cn("flex w-full min-w-0 text-sm font-medium", size === "sm" && "text-[13px] leading-snug font-normal")}
             >
-              {itemContext.fileState?.file.name}
+              <span className="min-w-0 flex-1 truncate">{fileBaseName}</span>
+              {fileExtension && <span className="shrink-0">{fileExtension}</span>}
             </span>
             <span
               id={itemContext.sizeId}
@@ -1347,7 +1350,7 @@ function FileUploadItemProgress(props: FileUploadItemProgressProps) {
       "aria-valuetext": `${itemContext.fileState?.progress ?? 0}%`,
       "aria-labelledby": itemContext.nameId,
       className: cn(
-        "relative h-1.5 w-full overflow-hidden rounded-full bg-primary/20",
+        "relative h-1.5 w-full overflow-hidden bg-primary/20",
         className,
       ),
       children: (

@@ -89,6 +89,7 @@ const steps = [
 
 export function NewProjectDialog() {
   const { mutate, isPending } = useCreateProject()
+
   const form = useForm<ProjectFormValues>({
     defaultValues: { name: "", privacy: "Private", project_statement: "", logo: null },
     mode: "onChange",
@@ -137,7 +138,19 @@ export function NewProjectDialog() {
   
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogTrigger render={<Button variant="default" className="w-full">Create new project <PlusCircleIcon /></Button>} />
+      <DialogTrigger
+        render={
+          <Button
+            variant="default"
+            className="w-full group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2!"
+            aria-label="Create new project"
+            title="Create new project"
+          >
+            <span className="group-data-[collapsible=icon]:hidden">Create new project</span>
+            <PlusCircleIcon />
+          </Button>
+        }
+      />
       <DialogContent className="relative">
         <FormProvider {...form}>
           <form onSubmit={createNewProject} className="flex flex-col gap-4">
@@ -196,7 +209,7 @@ export function NewProjectDialog() {
                             event.preventDefault()
                             goBack()
                           }}
-                          disabled={currentIndex === 0}
+                          disabled={currentIndex === 0 || isPending}
                           variant={currentIndex === 0 ? 'secondary' : 'default'}
                         >
                           <ArrowLeftIcon className='size-4' />{' '}
@@ -211,6 +224,7 @@ export function NewProjectDialog() {
                             goNext()
                           }}
                           variant={currentIndex === steps.length - 1 ? 'secondary' : 'default'}
+                          disabled={isPending}
                         >
                           Next{' '}
                           <ArrowRightIcon className='size-4' />

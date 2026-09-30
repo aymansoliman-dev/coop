@@ -61,7 +61,7 @@ export function LoginForm({ className, ...props }: ComponentProps<"div">) {
       <form onSubmit={handleSubmit}>
         <FieldGroup>
           <div className="flex flex-col items-center gap-2 text-center">
-            <div className="flex size-8 items-center justify-center rounded-md">
+            <div className="flex size-8 items-center justify-center">
               <Image src={coop} alt="coop" />
             </div>
             <span className="sr-only">coop</span>

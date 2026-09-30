@@ -14,7 +14,7 @@ export function NewProjectReview() {
   const statement = watch("project_statement")
 
   return (
-    <div className="h-40 min-h-0 space-y-3 overflow-y-auto rounded-md border p-3 text-left">
+    <div className="h-40 min-h-0 space-y-3 overflow-y-auto border p-3 text-left">
       <div>
         <p className="text-xs text-muted-foreground">Project name</p>
         <p className="wrap-break-word font-medium">{name || "Not provided"}</p>
