@@ -27,6 +27,7 @@ import { BookOpenIcon, AwardIcon } from 'lucide-react'
 import { ProjectLogoField } from "./project-logo-field"
 import { ProjectStatementField } from "./project-statement-field"
 import { NewProjectReview, type ProjectFormValues } from "./new-project-review"
+import { SidebarMenuButton } from "@/shared/components/ui/sidebar"
 
 const steps = [
   {
@@ -140,15 +141,15 @@ export function NewProjectDialog() {
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger
         render={
-          <Button
+          <SidebarMenuButton
             variant="default"
-            className="w-full group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2!"
+            className="w-full group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! flex justify-center items-center bg-accent-foreground text-accent"
             aria-label="Create new project"
-            title="Create new project"
+            tooltip="Create new project"
           >
             <span className="group-data-[collapsible=icon]:hidden">Create new project</span>
             <PlusCircleIcon />
-          </Button>
+          </SidebarMenuButton>
         }
       />
       <DialogContent className="relative">
@@ -183,7 +184,7 @@ export function NewProjectDialog() {
                     </div>
                   </StepperTrigger>
                   {index < steps.length - 1 && (
-                    <StepperSeparator className='mx-1 min-w-16 self-center group-data-[orientation=vertical]/stepper-nav:absolute group-data-[orientation=vertical]/stepper-nav:inset-y-0 group-data-[orientation=vertical]/stepper-nav:top-[calc(50%-22px)] group-data-[orientation=vertical]/stepper-nav:left-2 group-data-[orientation=vertical]/stepper-nav:min-w-0 group-data-[orientation=vertical]/stepper-nav:h-15' />
+                    <StepperSeparator className='mx-1 min-w-16 self-center group-data-[orientation=vertical]/stepper-nav:absolute group-data-[orientation=vertical]/stepper-nav:inset-y-0 group-data-[orientation=vertical]/stepper-nav:top-[calc(50%-22px)] group-data-[orientation=vertical]/stepper-nav:left-3 group-data-[orientation=vertical]/stepper-nav:min-w-0 group-data-[orientation=vertical]/stepper-nav:h-15' />
                   )}
                 </StepperItem>
               ))}
