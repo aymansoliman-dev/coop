@@ -7,7 +7,7 @@ import { ChevronRightIcon, BoxIcon, FolderIcon, TrashIcon, MoreVerticalIcon } fr
 import { useProjectsList } from '@/features/projects/hooks/useProjectsList'
 import Image from "next/image"
 import Link from "next/link"
-import { useSearchParams } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from './ui/dropdown-menu'
 import { useAuthUser } from '@/features/auth/hooks/useAuthUser'
 import { useDeleteProject } from '@/features/projects/hooks/useDeleteProject'
@@ -16,7 +16,8 @@ import { ScrollArea } from '@/shared/components/ui/scroll-area'
 export function NavProjects() {
   const [isOpen, setIsOpen] = useState(false)
   const { data: projectsList } = useProjectsList()
-  const currentProjectId = useSearchParams().get('id')
+  const pathname = usePathname()
+  const currentProjectId = pathname.match(/^\/projects\/([^/]+)/)?.[1]
   const { data: authenticatedUser } = useAuthUser()
   const { mutate } = useDeleteProject()
 

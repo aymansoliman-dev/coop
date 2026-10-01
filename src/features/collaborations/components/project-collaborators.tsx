@@ -1,10 +1,8 @@
-import { useSearchParams } from 'next/navigation'
 import { useProjectCollaborators } from '@/features/collaborations/hooks/useCollaborators'
 import { AvatarGroup, Avatar, AvatarImage, AvatarFallback } from '@/shared/components/ui/avatar'
 import { avatarFallbackText } from '@/shared/lib/utils'
 
-export function ProjectCollaborators () {
-    const projectId = useSearchParams().get('id') || ''
+export function ProjectCollaborators ({ projectId }: { projectId: string }) {
     const { data: collaborators = [] } = useProjectCollaborators(projectId)
 
     return (
