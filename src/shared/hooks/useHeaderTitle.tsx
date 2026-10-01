@@ -1,4 +1,4 @@
-import { usePathname, useParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useProject } from "@/features/projects/hooks/useProject"; // Adjust path to your hook
 import Link from 'next/link'
 import Image from 'next/image'
@@ -6,10 +6,9 @@ import { BoxIcon } from "lucide-react";
 
 export function useHeaderTitle() {
   const pathname = usePathname();
-  const params = useParams<{ projectId?: string }>();
   const currentPage = pathname.split("/").filter(Boolean).pop() || "home";
-  const isProjectRoute = pathname.startsWith("/projects/") && !!params.projectId;
-  const projectId = isProjectRoute ? params.projectId : null;
+  const projectId = pathname.match(/^\/project\/([^/]+)/)?.[1] ?? null;
+  const isProjectRoute = !!projectId;
 
   const { data: project } = useProject(projectId ?? "");
 

@@ -17,7 +17,7 @@ export function NavProjects() {
   const [isOpen, setIsOpen] = useState(false)
   const { data: projectsList } = useProjectsList()
   const pathname = usePathname()
-  const currentProjectId = pathname.match(/^\/projects\/([^/]+)/)?.[1]
+  const currentProjectId = pathname.match(/^\/project\/([^/]+)/)?.[1]
   const { data: authenticatedUser } = useAuthUser()
   const { mutate } = useDeleteProject()
 
