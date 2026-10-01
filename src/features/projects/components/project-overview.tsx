@@ -1,23 +1,18 @@
-'use client'
-
-import Image from 'next/image'
-import { useParams } from 'next/navigation'
 import { BoxIcon } from 'lucide-react'
 import { useProject } from '@/features/projects/hooks/useProject'
 import { ProjectStatement } from '@/features/projects/components/project-statement'
 import { ProjectCollaborators } from '@/features/collaborations/components/project-collaborators'
 import { ProjectStack } from '@/features/stack/components/project-stack'
 import { TasksTable } from '@/features/tasks/components/tasks-table'
+import Image from 'next/image'
 
-export default function Project() {
-    const { projectId } = useParams<{ projectId: string }>()
+
+export default function ProjectOverview({ projectId }: { projectId: string }) {
+
     const { data: project = {}, isPending } = useProject(projectId)
 
-    if (!project || !projectId) return null
-
     return (
-        <div className="relative">
-            <span style={{ background: project.theme }} className="ball absolute w-lg aspect-square rounded-full right-0 -top-8 opacity-15 blur-[640rem]"></span>
+        <>
             <div className="relative z-20 flex items-center gap-4 p-8">
                 <div className="w-32 aspect-square overflow-hidden rounded-2xl">
                     {
@@ -37,6 +32,6 @@ export default function Project() {
             <ProjectCollaborators projectId={projectId} />
             <ProjectStatement statement={project.project_statement} />
             <TasksTable projectId={projectId} />
-        </div>
+        </>
     )
 }
