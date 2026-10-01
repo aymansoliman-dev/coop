@@ -6,12 +6,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui
 import ProjectOverview from '@/features/projects/components/project-overview'
 import ProjectSettings from '@/features/projects/components/project-settings'
 import { HomeIcon, SettingsIcon } from 'lucide-react'
+import { EmptyPage } from '@/shared/components/empty-page'
 
 export default function Project() {
     const { projectId } = useParams<{ projectId: string }>()
-    const { data: project = {}, isPending } = useProject(projectId)
-    // TODO: Add Empty Page on Failure to Load Project, and Loading Page on Pending
+    const { data: project = {}, isPending, isError } = useProject(projectId)
 
+    if (isError) return <EmptyPage />
     if (!project || !projectId) return null
 
     return (
