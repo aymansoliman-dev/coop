@@ -25,7 +25,7 @@ export default function ProjectOverview({ projectId }: { projectId: string }) {
                     }
                 </div>
                 <div className="flex flex-col gap-4">
-                    <h2 className="text-2xl font-bold">{project.name}</h2>
+                    <h2 className="text-5xl font-bold">{project.name}</h2>
                     <ProjectStack projectId={projectId} />
                 </div>
             </div>
