@@ -153,7 +153,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     <Sidebar className="select-none" collapsible="icon" {...props}>
       <SidebarHeader className="flex-row items-center gap-2 border-b h-(--header-height) p-4">
         {/*<CommandIcon className="size-5!" />*/}
-        <Image src="https://res.cloudinary.com/dxlofja7z/image/upload/v1789662878/coop_dhxvx8.svg" width={48} height={48} alt="coop logo" className="w-6 h-6" loading="eager" />
+        <Image src="https://res.cloudinary.com/dxlofja7z/image/upload/v1789662878/coop_dhxvx8.svg" width={32} height={32} alt="coop logo" className="w-4 h-4" loading="eager" />
         <span className="text-base font-light font-mono group-data-[collapsible=icon]:hidden">coop</span>
       </SidebarHeader>
       {/**/}
