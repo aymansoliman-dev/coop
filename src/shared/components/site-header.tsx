@@ -4,12 +4,13 @@ import { Separator } from "@/shared/components/ui/separator"
 import { SidebarTrigger } from "@/shared/components/ui/sidebar"
 import Image from "next/image"
 import { useHeaderTitle } from "@/shared/hooks/useHeaderTitle"
-import { useSearchParams } from "next/navigation"
 import { Button } from "@/shared/components/ui/button"
+import { usePathname } from "next/navigation"
 
 export function SiteHeader() {
     const title = useHeaderTitle()
-    const _currentProjectId = useSearchParams().get('id')
+
+    const _currentProjectId = usePathname().match(/^\/projects\/([^/]+)/)?.[1]
     
 
     return (

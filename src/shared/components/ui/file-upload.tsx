@@ -1196,7 +1196,6 @@ function FileUploadItemMetadata(props: FileUploadItemMetadataProps) {
   const fileName = itemContext.fileState?.file.name ?? ""
   const extensionStart = fileName.lastIndexOf(".")
   const fileBaseName = extensionStart > 0 ? fileName.slice(0, extensionStart) : fileName
-  const fileExtension = extensionStart > 0 ? fileName.slice(extensionStart) : ""
 
   const element = useRender({
     defaultTagName: "div",
@@ -1212,7 +1211,6 @@ function FileUploadItemMetadata(props: FileUploadItemMetadataProps) {
               className={cn("flex w-full min-w-0 text-sm font-medium", size === "sm" && "text-[13px] leading-snug font-normal")}
             >
               <span className="min-w-0 flex-1 truncate">{fileBaseName}</span>
-              {fileExtension && <span className="shrink-0">{fileExtension}</span>}
             </span>
             <span
               id={itemContext.sizeId}

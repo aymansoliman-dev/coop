@@ -7,7 +7,7 @@ import { ChevronRightIcon, BoxIcon, FolderIcon, TrashIcon, MoreVerticalIcon } fr
 import { useProjectsList } from '@/features/projects/hooks/useProjectsList'
 import Image from "next/image"
 import Link from "next/link"
-import { useSearchParams } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from './ui/dropdown-menu'
 import { useAuthUser } from '@/features/auth/hooks/useAuthUser'
 import { useDeleteProject } from '@/features/projects/hooks/useDeleteProject'
@@ -16,7 +16,8 @@ import { ScrollArea } from '@/shared/components/ui/scroll-area'
 export function NavProjects() {
   const [isOpen, setIsOpen] = useState(false)
   const { data: projectsList } = useProjectsList()
-  const currentProjectId = useSearchParams().get('id')
+  const pathname = usePathname()
+  const currentProjectId = pathname.match(/^\/projects\/([^/]+)/)?.[1]
   const { data: authenticatedUser } = useAuthUser()
   const { mutate } = useDeleteProject()
 
@@ -46,14 +47,14 @@ export function NavProjects() {
 
           { projectsList.length > 0 && 
             <CollapsibleContent className="grow space-y-1 static transition-all data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down right-0 left-0 pt-1 px-0">
-              <ScrollArea className="h-80 border group-data-[collapsible=icon]:border-none">
+              <ScrollArea className="h-80 outline group-data-[collapsible=icon]:outline-none">
                 <ul>
                   {projectsList.map((project: any) => (
                     <SidebarMenuItem key={project.id} className="list-none">
                       <SidebarMenuButton tooltip={project.name} isActive={project.id === currentProjectId} render={
                         <div className="project-link flex items-center justify-between gap-2 w-full">
-                          <Link href={`/project?id=${project.id}`} className="flex items-center gap-2 grow h-full p-2 group-data-[collapsible=icon]:p-2 pr-0">
-                            { project.logo ? <Image src={project.logo} alt={project.name} width={16} height={16} unoptimized className='h-4 w-4 group-data-[collapsible=icon]:h-full group-data-[collapsible=icon]:w-full shrink-0 object-cover object-center' /> : <BoxIcon color={project.theme} fill={project.theme} size="full" />}
+                          <Link href={`/projects/${project.id}`} className="flex items-center gap-2 grow h-full p-2 group-data-[collapsible=icon]:p-2 pr-0">
+                            { project.logo ? <Image src={project.logo} alt={project.name} width={16} height={16} unoptimized className='h-4 w-4 group-data-[collapsible=icon]:h-full shrink-0 object-cover object-center' /> : <BoxIcon color={project.theme} fill={project.theme} size="full" />}
                             <span className="group-data-[collapsible=icon]:hidden">{project.name}</span>
                           </Link>
                           { authenticatedUser?.id === project.owner_id &&

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { deleteProject } from '@/features/projects/api'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { toast } from '@/shared/components/ui/toast'
 import { useRef } from 'react'
 
@@ -8,6 +8,7 @@ export function useDeleteProject() {
   const queryClient = useQueryClient()
   const router = useRouter()
   const toastIdRef = useRef<string | null>(null)
+  const pathname = usePathname()
 
   return useMutation({
     mutationFn: (projectId: string) => deleteProject(projectId),
@@ -17,7 +18,7 @@ export function useDeleteProject() {
         description: 'Deleting project...',
       })
     },
-    onSuccess: (projectId) => {
+    onSuccess: (_data, projectId) => {
       queryClient.invalidateQueries({ queryKey: ['projects-list'] })
       queryClient.invalidateQueries({ queryKey: ['projects', projectId] })
       if (toastIdRef.current !== null) {
@@ -26,7 +27,7 @@ export function useDeleteProject() {
           description: 'Project Deleted!',
         })
       }
-      router.push('/dashboard')
+      if (pathname === `/projects/${projectId}`) router.push('/dashboard')
     },
     onError: (error: any) => {
       if (toastIdRef.current !== null) {

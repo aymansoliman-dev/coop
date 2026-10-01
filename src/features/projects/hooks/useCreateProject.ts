@@ -25,7 +25,7 @@ export function useCreateProject() {
           description: 'Project created!',
         })
       }
-      router.push('/project?id=' + newProject.id)
+      router.push('/projects/' + newProject.id)
     },
     onError: (error: any) => {
       if (toastIdRef.current !== null) {
