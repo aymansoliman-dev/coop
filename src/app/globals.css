@@ -205,7 +205,7 @@ main > div {
 }
 
 .ball {
-  animation: ball-drift 10s ease-in-out infinite alternate;
+  animation: ball-drift 30s ease-in-out infinite alternate;
   filter: blur(10rem);
   transform-origin: center;
   will-change: transform;

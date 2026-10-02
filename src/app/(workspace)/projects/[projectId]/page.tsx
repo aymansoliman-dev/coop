@@ -18,7 +18,6 @@ export default function Project() {
 
     return (
         <div className="relative">
-            <span style={{ background: project.theme }} className="ball absolute w-lg aspect-square rounded-full right-0 -top-8 opacity-15 blur-[640rem]"></span>
             <Tabs defaultValue={tabName ?? "overview"} className="w-full">
                 <TabsList className="absolute right-0 z-30">
                     <TabsTrigger value="overview">

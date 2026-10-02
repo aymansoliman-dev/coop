@@ -42,7 +42,7 @@ export function NavProjects() {
               <SidebarMenuButton tooltip="Projects" className={`w-full overflow-hidden h-fit py-0 pl-0 pr-2`} data-active={isOpen}>
                 <SidebarGroupLabel className="text-md font-light cursor-pointer flex-1 flex gap-3 text-white">
                   <FolderIcon fill={isOpen? "currentColor" : ""} />
-                  Projects
+                  <span className="group-data-[collapsible=icon]:hidden">Projects</span>
                 </SidebarGroupLabel>
                 <ChevronRightIcon className={`group-data-[collapsible=icon]:hidden size-4 transition-all${isOpen? " rotate-90" : ""}`} />
                 <span className="sr-only">Toggle details</span>
