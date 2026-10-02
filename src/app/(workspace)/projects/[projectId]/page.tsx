@@ -1,6 +1,6 @@
 'use client'
 
-import { useParams } from 'next/navigation'
+import { useParams, useSearchParams } from 'next/navigation'
 import { useProject } from '@/features/projects/hooks/useProject'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui/tabs'
 import ProjectOverview from '@/features/projects/components/project-overview'
@@ -10,6 +10,7 @@ import { EmptyPage } from '@/shared/components/empty-page'
 
 export default function Project() {
     const { projectId } = useParams<{ projectId: string }>()
+    const tabName = useSearchParams().get('tab')
     const { data: project = {}, isPending, isError } = useProject(projectId)
 
     if (isError) return <EmptyPage />
@@ -18,7 +19,7 @@ export default function Project() {
     return (
         <div className="relative">
             <span style={{ background: project.theme }} className="ball absolute w-lg aspect-square rounded-full right-0 -top-8 opacity-15 blur-[640rem]"></span>
-            <Tabs defaultValue="overview" className="w-full">
+            <Tabs defaultValue={tabName ?? "overview"} className="w-full">
                 <TabsList className="absolute right-0 z-30">
                     <TabsTrigger value="overview">
                         <HomeIcon />

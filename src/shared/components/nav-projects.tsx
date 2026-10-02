@@ -3,15 +3,16 @@
 import { useCallback, useState } from 'react'
 import { SidebarGroup, SidebarGroupLabel, SidebarMenuButton, SidebarMenuItem } from "@/shared/components/ui/sidebar"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/shared/components/ui/collapsible"
-import { ChevronRightIcon, BoxIcon, FolderIcon, TrashIcon, MoreVerticalIcon } from "lucide-react"
+import { ChevronRightIcon, BoxIcon, FolderIcon, TrashIcon, MoreVerticalIcon, SettingsIcon } from "lucide-react"
 import { useProjectsList } from '@/features/projects/hooks/useProjectsList'
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from 'next/navigation'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from './ui/dropdown-menu'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu'
 import { useAuthUser } from '@/features/auth/hooks/useAuthUser'
 import { useDeleteProject } from '@/features/projects/hooks/useDeleteProject'
 import { ScrollArea } from '@/shared/components/ui/scroll-area'
+import { useRouter } from 'next/navigation'
 
 export function NavProjects() {
   const [isOpen, setIsOpen] = useState(false)
@@ -20,10 +21,15 @@ export function NavProjects() {
   const currentProjectId = pathname.match(/^\/projects\/([^/]+)/)?.[1]
   const { data: authenticatedUser } = useAuthUser()
   const { mutate } = useDeleteProject()
+  const router = useRouter()
 
   const deleteProject = useCallback((projectId: string) => {
     mutate(projectId)
   }, [mutate])
+
+  const goToProjectSettings = useCallback((projectId: string) => {
+    router.push(`/projects/${projectId}?tab=settings`)
+  }, [])
 
   if (!projectsList) return null         
 
@@ -66,6 +72,11 @@ export function NavProjects() {
                               } />
                               <DropdownMenuContent>
                                 <DropdownMenuGroup>
+                                  <DropdownMenuItem variant="default" onClick={(e) => {e.preventDefault(); goToProjectSettings(project.id)}} className="cursor-pointer">
+                                    <SettingsIcon />
+                                    <span>Settings</span>
+                                  </DropdownMenuItem>
+                                  <DropdownMenuSeparator />
                                   <DropdownMenuItem variant="destructive" onClick={(e) => { e.preventDefault(); deleteProject(project.id) }} className="cursor-pointer">
                                     <TrashIcon />
                                     <span>Delete</span>
