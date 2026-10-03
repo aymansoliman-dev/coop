@@ -129,37 +129,37 @@ main > div {
 }
 
 .dark {
-  --background: #041943;
-  --foreground: #eef8ff;
-  --card: #082652;
-  --card-foreground: #eef8ff;
-  --popover: #082652;
-  --popover-foreground: #eef8ff;
-  --primary: #096cff;
-  --primary-foreground: #ffffff;
-  --secondary: #0b315f;
-  --secondary-foreground: #eef8ff;
-  --muted: #082652;
-  --muted-foreground: #a8c4dd;
-  --accent: #063e63;
-  --accent-foreground: #d8f8fc;
-  --destructive: #ff6b7a;
-  --border: #ffffff1a;
-  --input: #ffffff33;
-  --ring: #00dbf3;
-  --chart-1: #00dbf3;
-  --chart-2: #5fd3a6;
-  --chart-3: #f0ad5f;
-  --chart-4: #a9a3ba;
-  --chart-5: #d8f8fc;
-  --sidebar: #041943;
-  --sidebar-foreground: #eef8ff;
-  --sidebar-primary: #096cff;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #0b315f;
-  --sidebar-accent-foreground: #eef8ff;
-  --sidebar-border: #ffffff1a;
-  --sidebar-ring: #00dbf3;
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
 }
 
 @layer base {
