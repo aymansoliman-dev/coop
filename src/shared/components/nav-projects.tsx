@@ -53,7 +53,7 @@ export function NavProjects() {
 
           { projectsList.length > 0 && 
             <CollapsibleContent className="grow space-y-1 static transition-all data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down right-0 left-0 pt-1 px-0">
-              <ScrollArea className="h-80 outline group-data-[collapsible=icon]:outline-none">
+              <ScrollArea className="h-80 outline group-data-[collapsible=icon]:outline-none scroll-fade-b">
                 <ul>
                   {projectsList.map((project: any) => (
                     <SidebarMenuItem key={project.id} className="list-none">
