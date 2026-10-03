@@ -110,7 +110,7 @@ main > div {
   --accent: #d8f8fc;
   --accent-foreground: #041943;
   --destructive: #d72638;
-  --border: #4d4d4d;
+  --border: #e3e3e3;
   --input: #00000033;
   --ring: #096cff;
   --chart-1: #096cff;
@@ -124,7 +124,7 @@ main > div {
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: #f5f3fb;
   --sidebar-accent-foreground: #373145;
-  --sidebar-border: #4d4d4d;
+  --sidebar-border: #e3e3e3;
   --sidebar-ring: #096cff;
 }
 
