@@ -143,7 +143,7 @@ export function NewProjectDialog() {
         render={
           <SidebarMenuButton
             variant="default"
-            className="w-full group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! flex justify-center items-center bg-accent-foreground text-accent"
+            className="w-full group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! flex justify-center items-center bg-primary text-primary-foreground hover:bg-primary/80"
             aria-label="Create new project"
             tooltip="Create new project"
           >
