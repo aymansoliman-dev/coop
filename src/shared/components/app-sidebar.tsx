@@ -5,11 +5,15 @@ import * as React from "react"
 import { NavMain } from "@/shared/components/nav-main"
 import { NavProjects } from "@/shared/components/nav-projects"
 import { NavSecondary } from "@/shared/components/nav-secondary"
-import { NavUser } from "@/shared/components/nav-user"
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader } from "@/shared/components/ui/sidebar"
-import { LayoutDashboardIcon, CameraIcon, FileTextIcon, Settings2Icon, CircleHelpIcon, SearchIcon, DatabaseIcon, FileChartColumnIcon, FileIcon } from "lucide-react"
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenuButton } from "@/shared/components/ui/sidebar"
+import { CameraIcon, FileTextIcon, DatabaseIcon, FileChartColumnIcon, FileIcon } from "lucide-react"
+import { LogoutIcon } from "@/assets/icons"
+import { LayoutDashboardIcon } from "@/assets/icons"
 import Image from 'next/image'
 import { NewProjectDialog } from "@/features/projects/components/new-project-dialog"
+import { useRouter } from "next/navigation"
+import { useCallback } from "react"
+import { toast } from "./ui/toast"
 
 const data = {
   navMain: [
@@ -17,7 +21,7 @@ const data = {
       title: "Dashboard",
       url: "/dashboard",
       icon: (
-        <LayoutDashboardIcon fill="currentColor" />
+        <LayoutDashboardIcon />
       ),
     },
     // {
@@ -94,32 +98,6 @@ const data = {
       ],
     },
   ],
-  navSecondary: [
-    {
-      title: "Settings",
-      url: "#",
-      icon: (
-        <Settings2Icon
-        />
-      ),
-    },
-    {
-      title: "Get Help",
-      url: "#",
-      icon: (
-        <CircleHelpIcon
-        />
-      ),
-    },
-    {
-      title: "Search",
-      url: "/search",
-      icon: (
-        <SearchIcon
-        />
-      ),
-    },
-  ],
   documents: [
     {
       name: "Data Library",
@@ -148,26 +126,42 @@ const data = {
   ],
 }
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const router = useRouter();
+  
+  const handleLogout = useCallback(() => {
+    localStorage.removeItem("token")
+    router.push("/login")
+    toast.add({
+      type: "success",
+      description: "logged out successfully",
+    })
+  }, [router])
 
   return (
     <Sidebar className="select-none" collapsible="icon" {...props}>
-      <SidebarHeader className="flex-row items-center gap-2 border-b h-(--header-height) p-4">
+      <SidebarHeader className="flex-row items-center gap-4 border-b h-(--header-height) p-0">
         {/*<CommandIcon className="size-5!" />*/}
-        <Image src="https://res.cloudinary.com/dxlofja7z/image/upload/v1789662878/coop_dhxvx8.svg" width={32} height={32} alt="coop logo" className="w-4 h-4" loading="eager" />
-        <span className="text-base font-light font-mono group-data-[collapsible=icon]:hidden">coop</span>
+        <Image src="https://res.cloudinary.com/dxlofja7z/image/upload/v1789662878/coop_dhxvx8.svg" width={32} height={32} alt="coop logo" className="w-12 h-full" loading="eager" />
+        <span className="text-2xl group-data-[collapsible=icon]:hidden">coop</span>
       </SidebarHeader>
       {/**/}
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        <NavMain />
         {/*  */}
         <NavProjects />
         {/*  */}
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
+        <NavSecondary className="mt-auto" />
       </SidebarContent>
       {/**/}
-      <SidebarFooter>
+      <SidebarFooter className="gap-0">
         <NewProjectDialog />
-        <NavUser />
+        {/*  */}
+        <SidebarMenuButton className="h-12 p-0" tooltip="Logout" onClick={handleLogout} >
+          <div className="w-12 p-4">
+            <LogoutIcon />
+          </div>
+          <span className="group-data-[collapsible=icon]:hidden">Logout</span>
+        </SidebarMenuButton>
       </SidebarFooter>
     </Sidebar>
   )

@@ -25,11 +25,11 @@ export default function Project() {
                 className="w-full"
             >
                 <TabsList className="ml-auto right-0 z-30 sticky top-(--header-height)">
-                    <TabsTrigger value="overview">
+                    <TabsTrigger value="overview" style={{ borderTop: "none" }}>
                         <HomeIcon />
                         Overview
                     </TabsTrigger>
-                    <TabsTrigger value="settings">
+                    <TabsTrigger value="settings" style={{ borderTop: "none" }}>
                         <SettingsIcon />
                         Settings
                     </TabsTrigger>

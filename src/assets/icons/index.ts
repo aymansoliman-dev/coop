@@ -1,3 +1,7 @@
 export { BoxIcon } from './box-icon'
 export { BoxIconSkeleton } from './box-icon-skeleton'
 export { ProjectsIcon } from './projects-icon'
+export { PanelLeftIcon } from './panel-left-icon'
+export { LayoutDashboardIcon } from './layout-dashboard-icon'
+export { MoreVerticalIcon } from './more-vertical-icon'
+export { LogoutIcon } from './logout-icon'

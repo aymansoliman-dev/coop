@@ -92,7 +92,7 @@ export function LoginForm({ className, ...props }: ComponentProps<"div">) {
                 disabled={loginMutation.isPending}
                 required
               />
-              <Button variant="secondary" onClick={() => setPasswordIsVisible(!passwordIsVisible)}>
+              <Button variant="secondary" onClick={() => setPasswordIsVisible(!passwordIsVisible)} className="border-border h-full aspect-square py-[.7rem]" disabled={loginMutation.isPending}>
                 { passwordIsVisible ? <EyeIcon /> : <EyeClosedIcon /> }
               </Button>
             </div>

@@ -143,12 +143,14 @@ export function NewProjectDialog() {
         render={
           <SidebarMenuButton
             variant="default"
-            className="w-full group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! flex justify-center items-center bg-primary text-primary-foreground hover:bg-primary/80"
+            className="w-full h-12 p-0 flex justify-center items-center bg-primary text-primary-foreground hover:bg-primary/80"
             aria-label="Create new project"
             tooltip="Create new project"
           >
-            <span className="group-data-[collapsible=icon]:hidden">Create new project</span>
-            <PlusCircleIcon />
+            <span className="group-data-[collapsible=icon]:hidden whitespace-nowrap">Create new project</span>
+            <div className="w-12 p-4">
+              <PlusCircleIcon />
+            </div>
           </SidebarMenuButton>
         }
       />

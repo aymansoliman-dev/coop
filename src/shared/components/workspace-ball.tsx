@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation"
 import { useProject } from "@/features/projects/hooks/useProject"
 
-const dashboardColor = "#00DBF3"
+const dashboardColor = "rgb(12, 108, 252)"
 
 export function WorkspaceBall() {
   const pathname = usePathname()
