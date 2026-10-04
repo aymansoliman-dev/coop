@@ -5,8 +5,10 @@ import { avatarFallbackText } from '@/shared/lib/utils'
 export function ProjectCollaborators ({ projectId }: { projectId: string }) {
     const { data: collaborators = [] } = useProjectCollaborators(projectId)
 
+    if (!collaborators || collaborators.length === 0) return null
+
     return (
-        <div className="px-4 lg:px-8">
+        <div className="px-4 lg:px-8 border-b">
             <AvatarGroup className="flex gap-2 items-center">
                 {
                     collaborators.map((collaborator: { id: string, name: string, avatar: string }) => (

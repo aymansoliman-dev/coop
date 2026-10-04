@@ -3,7 +3,8 @@
 import { useCallback, useState } from 'react'
 import { SidebarGroup, SidebarGroupLabel, SidebarMenuButton, SidebarMenuItem } from "@/shared/components/ui/sidebar"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/shared/components/ui/collapsible"
-import { ChevronRightIcon, BoxIcon, FolderIcon, TrashIcon, MoreVerticalIcon, SettingsIcon } from "lucide-react"
+import { ChevronRightIcon, TrashIcon, MoreVerticalIcon, SettingsIcon } from "lucide-react"
+import { ProjectsIcon, BoxIcon } from '@/assets/icons/'
 import { useProjectsList } from '@/features/projects/hooks/useProjectsList'
 import Image from "next/image"
 import Link from "next/link"
@@ -34,14 +35,14 @@ export function NavProjects() {
   if (!projectsList) return null         
 
   return (
-    <div className="mx-2 grow">
+    <div className="grow">
       <Collapsible open={isOpen} onOpenChange={setIsOpen} className="w-full h-full">
-        <SidebarGroup className="h-full px-0">
+        <SidebarGroup className="h-full p-0">
           <div className="flex items-center justify-between gap-4 z-10" onClick={() => setIsOpen(!isOpen)}>        
             <CollapsibleTrigger render={
-              <SidebarMenuButton tooltip="Projects" className={`w-full overflow-hidden h-fit py-0 pl-0 pr-2`} data-active={isOpen}>
+              <SidebarMenuButton tooltip="Projects" className={`w-full overflow-hidden h-fit p-2`} data-active={isOpen}>
                 <SidebarGroupLabel className={`text-md font-light cursor-pointer flex-1 flex gap-3 ${isOpen ? "text-sidebar-accent-foreground" : "text-sidebar-foreground"}`}>
-                  <FolderIcon
+                  <ProjectsIcon
                     className={isOpen ? "text-sidebar-accent-foreground" : "text-sidebar-foreground"}
                     fill={isOpen ? "currentColor" : "none"}
                   />
@@ -62,8 +63,11 @@ export function NavProjects() {
                     <SidebarMenuItem key={project.id} className="list-none">
                       <SidebarMenuButton tooltip={project.name} isActive={project.id === currentProjectId} render={
                         <div className="project-link flex items-center justify-between gap-2 w-full">
-                          <Link href={`/projects/${project.id}`} className="flex items-center gap-2 grow h-full p-2 group-data-[collapsible=icon]:p-2 pr-0">
-                            { project.logo ? <Image src={project.logo} alt={project.name} width={16} height={16} unoptimized className='h-4 w-4 group-data-[collapsible=icon]:h-full shrink-0 object-cover object-center' /> : <BoxIcon color={project.theme} fill={project.theme} size="full" />}
+                          <Link href={`/projects/${project.id}`} className="flex items-center gap-2 grow h-full p-4 group-data-[collapsible=icon]:p-2 pr-0">
+                            { 
+                              project.logo ? <Image src={project.logo} alt={project.name} width={16} height={16} unoptimized className='h-4 w-4 group-data-[collapsible=icon]:h-full shrink-0 object-cover object-center' /> 
+                                : <BoxIcon color={project.theme} fill={project.theme} size="full" />
+                            }
                             <span className="group-data-[collapsible=icon]:hidden">{project.name}</span>
                           </Link>
                           { authenticatedUser?.id === project.owner_id &&

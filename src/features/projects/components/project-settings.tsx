@@ -8,13 +8,13 @@ import { SettingsIcon } from "lucide-react"
 
 export default function ProjectSettings({ projectId }: { projectId: string }) {
     return (
-        <div className="p-8 flex flex-col gap-12">
-            <div>
+        <div className="bg-background flex flex-col gap-12 [&>div]:px-4 [&>div]:lg:px-8">
+            <div className="border-b py-8 sticky top-(--header-height) bg-background">
                 <div className="flex items-center gap-2">
                     <h3 className="text-2xl font-bold">Project Settings</h3>
                     <SettingsIcon />
                 </div>
-                <p>Manage how this project looks, who can work on it, and what it is built with.</p>
+                <p className="text-muted-foreground">Manage how this project looks, who can work on it, and what it is built with.</p>
             </div>
             <div className="flex gap-8">
                 <aside className="flex flex-col gap-2 w-48 shrink-0">

@@ -24,7 +24,7 @@ export default function Project() {
                 onValueChange={(value) => router.push(`/projects/${projectId}?tab=${value}`)}
                 className="w-full"
             >
-                <TabsList className="absolute right-0 z-30">
+                <TabsList className="ml-auto right-0 z-30 sticky top-(--header-height)">
                     <TabsTrigger value="overview">
                         <HomeIcon />
                         Overview

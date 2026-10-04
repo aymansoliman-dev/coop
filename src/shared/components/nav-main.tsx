@@ -23,7 +23,7 @@ export function NavMain({
   const pathname = usePathname()
 
   return (
-    <SidebarGroup>
+    <SidebarGroup className="border-b">
       <SidebarGroupContent>
         <SidebarMenu className="gap-1">
           {items.map((item) => (

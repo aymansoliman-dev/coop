@@ -14,28 +14,25 @@ export function SiteHeader() {
     
 
     return (
-        <header className="sticky top-0 z-20 flex h-(--header-height) shrink-0 items-center gap-2 border-b bg-background transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height)">
-            <div className="flex w-full items-center gap-1 px-4 lg:gap-2 lg:px-6">
-                <SidebarTrigger className="-ml-1" />
+        <header className="sticky top-0 z-20 h-(--header-height) shrink-0 items-center border-b bg-background transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height) flex">
+            <SidebarTrigger className="aspect-square p-6" style={{ borderRight: "1px solid var(--border)" }} />
 
-                <Separator
-                    orientation="vertical"
-                    className="mx-2 h-4 data-vertical:self-auto"
-                />
-                
-                <Button variant="ghost">
-                    {title}
-                </Button>
+            {/* <Separator
+                orientation="vertical"
+                className="mx-2 h-12 data-vertical:self-auto"
+            /> */}
+            
+            <Button variant="ghost" className="h-full pl-4 pr-6" style={{ borderRight: "1px solid var(--border)" }} >
+                {title}
+            </Button>
 
-                <Image
-                    src={'https://res.cloudinary.com/dxlofja7z/image/upload/v1789662878/coop_dhxvx8.svg'}
-                    alt="coop logo"
-                    width={16}
-                    height={16}
-                    className="ml-auto"
-                />
-
-            </div>
+            <Image
+                src={'https://res.cloudinary.com/dxlofja7z/image/upload/v1789662878/coop_dhxvx8.svg'}
+                alt="coop logo"
+                width={16}
+                height={16}
+                className="ml-auto mr-4"
+            />
         </header>
     )
 }
