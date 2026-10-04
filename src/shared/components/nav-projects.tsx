@@ -63,7 +63,7 @@ export function NavProjects() {
                     <SidebarMenuItem key={project.id} className="list-none">
                       <SidebarMenuButton tooltip={project.name} isActive={project.id === currentProjectId} render={
                         <div className="project-link flex items-center justify-between gap-2 w-full">
-                          <Link href={`/projects/${project.id}`} className="flex items-center gap-2 grow h-full p-4 group-data-[collapsible=icon]:p-2 pr-0">
+                          <Link href={`/projects/${project.id}`} className="flex items-center gap-2 grow h-full p-4 pr-0 group-data-[collapsible=icon]:size-full group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:p-2">
                             { 
                               project.logo ? <Image src={project.logo} alt={project.name} width={16} height={16} unoptimized className='h-4 w-4 group-data-[collapsible=icon]:h-full shrink-0 object-cover object-center' /> 
                                 : <BoxIcon color={project.theme} fill={project.theme} size="full" />
