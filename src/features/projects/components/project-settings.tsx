@@ -9,7 +9,7 @@ import { SettingsIcon } from "lucide-react"
 export default function ProjectSettings({ projectId }: { projectId: string }) {
     return (
         <div className="bg-background flex flex-col gap-12 [&>div]:px-4 [&>div]:lg:px-8">
-            <div className="border-b py-8 sticky top-(--header-height) bg-background">
+            <div className="border-b pt-12 pb-8 sticky top-(--header-height) bg-background -mt-12">
                 <div className="flex items-center gap-2">
                     <h3 className="text-2xl font-bold">Project Settings</h3>
                     <SettingsIcon />

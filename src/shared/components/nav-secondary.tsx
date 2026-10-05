@@ -48,11 +48,11 @@ export function NavSecondary({...props}: {} & React.ComponentPropsWithoutRef<typ
       <SidebarGroupContent>
         <SidebarMenu>
           {items.map((item) => (
-            <SidebarMenuButton key={item.title} tooltip={item.title} className="h-12 p-0" render={<Link href={item.url} />} isActive={item.url === pathname}>
+            <SidebarMenuButton key={item.title} tooltip={item.title} className="h-12 p-0 gap-0" render={<Link href={item.url} />} isActive={item.url === pathname}>
               <div className="w-12 p-4">
                 {item.icon}
               </div>
-              <span>{item.title}</span>
+              <span className="grow h-full flex items-center">{item.title}</span>
             </SidebarMenuButton>
           ))}
         </SidebarMenu>

@@ -156,11 +156,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarFooter className="gap-0">
         <NewProjectDialog />
         {/*  */}
-        <SidebarMenuButton className="h-12 p-0" tooltip="Logout" onClick={handleLogout} >
+        <SidebarMenuButton className="h-12 p-0 gap-0" tooltip="Logout" onClick={handleLogout} >
           <div className="w-12 p-4">
             <LogoutIcon />
           </div>
-          <span className="group-data-[collapsible=icon]:hidden">Logout</span>
+          <span className="group-data-[collapsible=icon]:hidden h-full grow flex items-center">Logout</span>
         </SidebarMenuButton>
       </SidebarFooter>
     </Sidebar>
