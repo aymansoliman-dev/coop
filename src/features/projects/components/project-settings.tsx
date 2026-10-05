@@ -5,39 +5,58 @@ import CollaboratorsSettings from "@/features/projects/components/collaborators-
 import DangerZoneSettings from "@/features/projects/components/danger-zone-settings"
 import { Button } from "@/shared/components/ui/button"
 import { SettingsIcon } from "lucide-react"
+import { useState } from "react"
+import { ScrollSpy, ScrollSpyLink, ScrollSpyNav, ScrollSpySection, ScrollSpyViewport } from "@/shared/components/ui/scroll-spy"
+
+const navigationItems = [
+    { href: "general", label: "General" },
+    { href: "tech-stack", label: "Tech stack" },
+    { href: "project-collaborators", label: "Collaborators" },
+    { href: "danger-zone", label: "Danger zone" },
+]
 
 export default function ProjectSettings({ projectId }: { projectId: string }) {
+    const [scrollContainer, setScrollContainer] = useState<HTMLDivElement | null>(null);
+
     return (
-        <div className="bg-background flex flex-col gap-12 [&>div]:px-4 [&>div]:lg:px-8">
-            <div className="border-b pt-12 pb-8 sticky top-(--header-height) bg-background -mt-12">
+        <div className="grid h-full min-h-0 min-w-0 grid-rows-[auto_minmax(0,1fr)] overflow-hidden bg-background">
+            <div className="min-h-0 bg-background py-8 border-b px-4 lg:px-8">
                 <div className="flex items-center gap-2">
                     <h3 className="text-2xl font-bold">Project Settings</h3>
                     <SettingsIcon />
                 </div>
                 <p className="text-muted-foreground">Manage how this project looks, who can work on it, and what it is built with.</p>
             </div>
-            <div className="flex gap-8">
-                <aside className="flex flex-col gap-2 w-48 shrink-0">
-                    <Button nativeButton={false} variant="ghost" className="justify-start" render={
-                        <Link href="#general">General</Link>
-                    } />
-                    <Button nativeButton={false} variant="ghost" className="justify-start" render={
-                        <Link href="#tech-stack">Tech stack</Link>
-                    } />
-                    <Button nativeButton={false} variant="ghost" className="justify-start" render={
-                        <Link href="#project-collaborators">Collaborators</Link>
-                    } />
-                    <Button nativeButton={false} variant="ghost" className="justify-start" render={
-                        <Link href="#danger-zone">Danger zone</Link>
-                    } />
-                </aside>
-                <div className="grow flex flex-col gap-8">
-                    <GeneralSettings         projectId={projectId} />
-                    <TechStackSettings       projectId={projectId} />
-                    <CollaboratorsSettings   projectId={projectId} />
-                    <DangerZoneSettings      projectId={projectId} />
-                </div>
-            </div>
+
+            <ScrollSpy
+                offset={16}
+                scrollContainer={scrollContainer}
+                className="w-full grid min-h-0 min-w-0 md:grid-cols-[14rem_minmax(0,1fr)] grid-rows-[auto_1fr] md:grid-rows-none overflow-hidden"
+            >
+                <ScrollSpyNav className="border-r flex h-fit md:h-auto min-h-0 shrink-0 flex-row md:flex-col overflow-hidden gap-0 border-b md:border-b-0">
+                    {
+                        navigationItems.map(({href, label}) => <ScrollSpyLink key={href} value={href} className="p-3 rounded-none grow text-center md:text-left md:grow-0">{label}</ScrollSpyLink>)
+                    }
+                </ScrollSpyNav>
+                <ScrollSpyViewport
+                    ref={setScrollContainer}
+                    className="overflow-y-auto p-4 pb-9 scroll-fade-b"
+                >
+                    {
+                        [
+                            <GeneralSettings projectId={projectId} />,
+                            <TechStackSettings projectId={projectId} />,
+                            <CollaboratorsSettings projectId={projectId} />,
+                            <DangerZoneSettings projectId={projectId} />,
+                        ]
+                        .map((component, index) => (
+                            <ScrollSpySection key={index} value={["general", "tech-stack", "project-collaborators", "danger-zone"][index]}>
+                                {component}
+                            </ScrollSpySection>
+                        ))
+                    }
+                </ScrollSpyViewport>
+            </ScrollSpy>
         </div>
     )
 }

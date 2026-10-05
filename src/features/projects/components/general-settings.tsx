@@ -38,12 +38,8 @@ export default function GeneralSettings({ projectId }: { projectId: string }) {
 
     return (
         <Card id="general" className="rounded-none">
-            <CardHeader>
-                <h3 className="text-2xl font-bold">General</h3>
-            </CardHeader>
-            <CardDescription>
-                <p className="px-4">Shown on the project header and in the sidebar.</p>
-            </CardDescription>
+            <CardHeader className="text-xl font-bold">General</CardHeader>
+            <CardDescription className="px-(--card-spacing)">Shown on the project header and in the sidebar.</CardDescription>
             <CardContent>
                 <form onSubmit={handleSubmit((data) => console.log(data))}>
                     <FieldGroup>
@@ -62,7 +58,7 @@ export default function GeneralSettings({ projectId }: { projectId: string }) {
                     </FieldGroup>
                 </form>
             </CardContent>
-            <CardFooter className="justify-end rounded-none">
+            <CardFooter className="justify-end rounded-none p-0">
                 <Button type="submit">Save</Button>
             </CardFooter>
         </Card>

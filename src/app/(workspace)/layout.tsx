@@ -6,6 +6,7 @@ import { WorkspaceBall } from "@/shared/components/workspace-ball";
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
         <SidebarProvider
+            className="grid! h-dvh w-dvw min-h-0 min-w-0 grid-cols-[auto_minmax(0,1fr)] grid-rows-[auto_minmax(0,1fr)] overflow-hidden"
             style={
                 {
                     "--sidebar-width": "calc(var(--spacing) * 72)",
@@ -13,13 +14,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 } as React.CSSProperties
             }
         >
-            <AppSidebar variant="inset" />
+            <div className="row-span-2 min-h-0">
+                <AppSidebar variant="inset" />
+            </div>
 
-            <SidebarInset>
-                <SiteHeader />
-                <div className="relative flex min-h-0 flex-1 flex-col">
+            <SiteHeader />
+
+            <SidebarInset className="grid! min-h-0 min-w-0 overflow-hidden">
+                <div className="relative min-h-0 min-w-0 overflow-hidden">
                     <WorkspaceBall />
-                    <div className="relative z-10 flex min-h-0 flex-1 flex-col">
+                    <div className="relative z-10 min-h-0 min-w-0 h-full overflow-auto">
                         {children}
                     </div>
                 </div>

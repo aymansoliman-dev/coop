@@ -18,13 +18,13 @@ export default function Project() {
     if (!project || !projectId) return null
 
     return (
-        <div className="relative">
+        <div className="relative h-full min-h-0 min-w-0 overflow-hidden">
             <Tabs
                 value={tabName}
                 onValueChange={(value) => router.push(`/projects/${projectId}?tab=${value}`)}
-                className="w-full"
+                className="h-full min-h-0 w-full"
             >
-                <TabsList className="ml-auto right-0 z-30 sticky top-(--header-height)">
+                <TabsList className="ml-auto right-0 z-30 fixed top-(--header-height)">
                     <TabsTrigger value="overview" style={{ borderTop: "none" }}>
                         <HomeIcon />
                         Overview
@@ -40,7 +40,7 @@ export default function Project() {
                     <ProjectOverview projectId={projectId} />
                 </TabsContent>
 
-                <TabsContent value="settings">
+                <TabsContent value="settings" className="min-h-0 overflow-hidden">
                     <ProjectSettings projectId={projectId} />
                 </TabsContent>
             </Tabs>

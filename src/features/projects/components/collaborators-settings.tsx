@@ -4,16 +4,12 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader } from "@/sh
 export default function CollaboratorsSettings({ projectId }: { projectId: string }) {
     return (
         <Card id="project-collaborators" className="rounded-none">
-            <CardHeader>
-                <h3 className="text-2xl font-bold">Collaborators</h3>
-            </CardHeader>
-            <CardDescription>
-                <p>Manage who can work on this project.</p>
-            </CardDescription>
+            <CardHeader className="text-2xl font-bold">Collaborators</CardHeader>
+            <CardDescription>Manage who can work on this project.</CardDescription>
             <CardContent>
                 <p>Collaborators can view and edit this project.</p>
             </CardContent>
-            <CardFooter className="justify-end rounded-none">
+            <CardFooter className="justify-end rounded-none p-0">
                 <Button variant="destructive">Delete Project</Button>
             </CardFooter>
         </Card>
