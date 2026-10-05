@@ -29,7 +29,7 @@ export default function ProjectSettings({ projectId }: { projectId: string }) {
             </div>
 
             <ScrollSpy
-                offset={16}
+                offset={28}
                 scrollContainer={scrollContainer}
                 className="w-full grid min-h-0 min-w-0 md:grid-cols-[14rem_minmax(0,1fr)] grid-rows-[auto_1fr] md:grid-rows-none overflow-hidden"
             >
@@ -40,7 +40,7 @@ export default function ProjectSettings({ projectId }: { projectId: string }) {
                 </ScrollSpyNav>
                 <ScrollSpyViewport
                     ref={setScrollContainer}
-                    className="overflow-y-auto p-4 pb-9 scroll-fade-b"
+                    className="overflow-y-auto px-4 py-7 scroll-fade-y"
                 >
                     {
                         [
