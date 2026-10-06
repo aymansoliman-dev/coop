@@ -5,7 +5,7 @@ export default function DangerZoneSettings({ projectId }: { projectId: string })
     return (
         <Card id="danger-zone" className="rounded-none">
             <CardHeader className="text-2xl font-bold">Danger Zone</CardHeader>
-            <CardDescription>Delete this project and all of its data.</CardDescription>
+            <CardDescription className="px-(--card-spacing)">Delete this project and all of its data.</CardDescription>
             <CardContent>
                 <p>This action cannot be undone.</p>
             </CardContent>

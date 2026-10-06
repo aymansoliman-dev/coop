@@ -5,7 +5,7 @@ export default function CollaboratorsSettings({ projectId }: { projectId: string
     return (
         <Card id="project-collaborators" className="rounded-none">
             <CardHeader className="text-2xl font-bold">Collaborators</CardHeader>
-            <CardDescription>Manage who can work on this project.</CardDescription>
+            <CardDescription className="px-(--card-spacing)">Manage who can work on this project.</CardDescription>
             <CardContent>
                 <p>Collaborators can view and edit this project.</p>
             </CardContent>
