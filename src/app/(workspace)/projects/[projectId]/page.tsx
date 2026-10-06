@@ -7,6 +7,7 @@ import ProjectOverview from '@/features/projects/components/project-overview'
 import ProjectSettings from '@/features/projects/components/project-settings'
 import { HomeIcon, SettingsIcon } from 'lucide-react'
 import { EmptyPage } from '@/shared/components/empty-page'
+import { getSelectionForeground } from '@/shared/lib/utils' 
 
 export default function Project() {
     const { projectId } = useParams<{ projectId: string }>()
@@ -14,11 +15,19 @@ export default function Project() {
     const router = useRouter()
     const { data: project = {}, isError } = useProject(projectId)
 
-    if (isError) return <EmptyPage />
+    if (isError) return <div className="w-full h-full flex justify-center items-center"><EmptyPage /></div>
     if (!project || !projectId) return null
 
+    const selectionForeground = getSelectionForeground(project.theme)
+
     return (
-        <div className="relative h-full min-h-0 min-w-0 overflow-hidden">
+        <div
+            className="relative h-full min-h-0 min-w-0 overflow-hidden selection:bg-(--project-theme) selection:text-(--project-selection-foreground)!"
+            style={{
+                "--project-theme": project.theme,
+                "--project-selection-foreground": selectionForeground,
+            } as React.CSSProperties}
+        >
             <Tabs
                 value={tabName}
                 onValueChange={(value) => router.push(`/projects/${projectId}?tab=${value}`)}
