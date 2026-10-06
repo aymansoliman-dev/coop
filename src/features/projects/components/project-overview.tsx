@@ -28,7 +28,7 @@ export default function ProjectOverview({ projectId }: { projectId: string }) {
                 </div>
             </div>
             <ProjectCollaborators projectId={projectId} />
-            <ProjectStatement statement={project.project_statement} />
+            <ProjectStatement statement={project.statement} />
             <TasksTable projectId={projectId} />
         </>
     )

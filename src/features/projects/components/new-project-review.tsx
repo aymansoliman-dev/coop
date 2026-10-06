@@ -3,7 +3,7 @@ import { useFormContext } from "react-hook-form"
 export type ProjectFormValues = {
   name: string
   privacy: string
-  project_statement: string
+  statement: string
   logo: File | null
 }
 
@@ -11,7 +11,7 @@ export function NewProjectReview() {
   const { watch } = useFormContext<ProjectFormValues>()
   const name = watch("name")
   const privacy = watch("privacy")
-  const statement = watch("project_statement")
+  const statement = watch("statement")
 
   return (
     <div className="h-40 min-h-0 space-y-3 overflow-y-auto border p-3 text-left">

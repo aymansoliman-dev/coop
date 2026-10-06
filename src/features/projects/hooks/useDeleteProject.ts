@@ -3,6 +3,7 @@ import { deleteProject } from '@/features/projects/api'
 import { usePathname, useRouter } from 'next/navigation'
 import { toast } from '@/shared/components/ui/toast'
 import { useRef } from 'react'
+import type { Project } from '@/features/projects/types'
 
 export function useDeleteProject() {
   const queryClient = useQueryClient()
@@ -19,8 +20,11 @@ export function useDeleteProject() {
       })
     },
     onSuccess: (_data, projectId) => {
+      queryClient.setQueryData<Project[]>(['projects-list'], (projects = []) => {
+        return projects.filter((project) => project.id !== projectId)
+      })
+      queryClient.removeQueries({ queryKey: ['projects', projectId] })
       queryClient.invalidateQueries({ queryKey: ['projects-list'] })
-      queryClient.invalidateQueries({ queryKey: ['projects', projectId] })
       if (toastIdRef.current !== null) {
         toast.update(toastIdRef.current, {
           type: 'success',

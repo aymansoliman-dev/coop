@@ -3,6 +3,7 @@ import { createNewProject } from '@/features/projects/api'
 import { useRouter } from 'next/navigation'
 import { toast } from '@/shared/components/ui/toast'
 import { useRef } from 'react'
+import type { Project } from '@/features/projects/types'
 
 export function useCreateProject() {
   const queryClient = useQueryClient()
@@ -10,14 +11,18 @@ export function useCreateProject() {
   const toastIdRef = useRef<string | null>(null)
 
   return useMutation({
-    mutationFn: (newProject: { name: string, privacy: string, logo: File | null, project_statement: string | null }) => createNewProject(newProject),
+    mutationFn: (newProject: { name: string, privacy: string, logo: File | null, statement: string | null }) => createNewProject(newProject),
     onMutate: () => {
       toastIdRef.current = toast.add({
         type: 'loading',
         description: 'Creating project...',
       })
     },
-    onSuccess: (newProject) => {
+    onSuccess: (newProject: Project) => {
+      queryClient.setQueryData(['projects', newProject.id], newProject)
+      queryClient.setQueryData<Project[]>(['projects-list'], (projects = []) => {
+        return [newProject, ...projects]
+      })
       queryClient.invalidateQueries({ queryKey: ['projects-list'] })
       if (toastIdRef.current !== null) {
         toast.update(toastIdRef.current, {

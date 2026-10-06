@@ -92,7 +92,7 @@ export function NewProjectDialog() {
   const { mutate, isPending } = useCreateProject()
 
   const form = useForm<ProjectFormValues>({
-    defaultValues: { name: "", privacy: "Private", project_statement: "", logo: null },
+    defaultValues: { name: "", privacy: "Private", statement: "", logo: null },
     mode: "onChange",
   })
   const [open, setOpen] = useState(false)
@@ -124,7 +124,7 @@ export function NewProjectDialog() {
       name: (formData.get("name") as string).trim(),
       privacy: formData.get("privacy") as string,
       logo: logo && logo.size > 0 ? logo : null, // empty picker gives a 0-byte File
-      project_statement: (formData.get("project_statement") as string).trim() || null,
+      statement: (formData.get("statement") as string).trim() || null,
     }
     
     mutate(newProject, {
@@ -147,7 +147,7 @@ export function NewProjectDialog() {
             aria-label="Create new project"
             tooltip="Create new project"
           >
-            <span className="group-data-[collapsible=icon]:hidden whitespace-nowrap">Create new project</span>
+            <span className="group-data-[collapsible=icon]:hidden whitespace-nowrap">New project</span>
             <div className="w-12 p-4">
               <PlusCircleIcon />
             </div>

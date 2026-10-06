@@ -3,8 +3,9 @@ import GeneralSettings from "@/features/projects/components/general-settings"
 import TechStackSettings from "@/features/projects/components/tech-stack-settings"
 import CollaboratorsSettings from "@/features/projects/components/collaborators-settings"
 import DangerZoneSettings from "@/features/projects/components/danger-zone-settings"
+import AssetsSettings from "@/features/projects/components/assets-settings"
 import { Button } from "@/shared/components/ui/button"
-import { SettingsIcon } from "lucide-react"
+import { SettingsIcon } from "@/assets/icons"
 import { useState } from "react"
 import { ScrollSpy, ScrollSpyLink, ScrollSpyNav, ScrollSpySection, ScrollSpyViewport } from "@/shared/components/ui/scroll-spy"
 
@@ -12,6 +13,7 @@ const navigationItems = [
     { href: "general", label: "General" },
     { href: "tech-stack", label: "Tech stack" },
     { href: "project-collaborators", label: "Collaborators" },
+    { href: "assets", label: "Assets" },
     { href: "danger-zone", label: "Danger zone" },
 ]
 
@@ -31,9 +33,9 @@ export default function ProjectSettings({ projectId }: { projectId: string }) {
             <ScrollSpy
                 offset={28}
                 scrollContainer={scrollContainer}
-                className="w-full grid min-h-0 min-w-0 md:grid-cols-[14rem_minmax(0,1fr)] grid-rows-[auto_1fr] md:grid-rows-none overflow-hidden"
+                className="w-full grid min-h-0 min-w-0 md:grid-cols-[11rem_minmax(0,1fr)] grid-rows-[auto_1fr] md:grid-rows-none overflow-hidden"
             >
-                <ScrollSpyNav className="border-r flex h-fit md:h-auto min-h-0 shrink-0 flex-row md:flex-col overflow-hidden gap-0 border-b md:border-b-0">
+                <ScrollSpyNav className="border-r flex h-fit md:h-auto min-h-0 shrink flex-row md:flex-col overflow-hidden gap-0 border-b md:border-b-0">
                     {
                         navigationItems.map(({href, label}) => <ScrollSpyLink key={href} value={href} className="p-3 rounded-none grow text-center md:text-left md:grow-0">{label}</ScrollSpyLink>)
                     }
@@ -44,10 +46,11 @@ export default function ProjectSettings({ projectId }: { projectId: string }) {
                 >
                     {
                         [
-                            <GeneralSettings projectId={projectId} />,
-                            <TechStackSettings projectId={projectId} />,
-                            <CollaboratorsSettings projectId={projectId} />,
-                            <DangerZoneSettings projectId={projectId} />,
+                            <GeneralSettings        projectId={projectId} />,
+                            <TechStackSettings      projectId={projectId} />,
+                            <CollaboratorsSettings  projectId={projectId} />,
+                            <AssetsSettings         projectId={projectId} />,
+                            <DangerZoneSettings     projectId={projectId} />,
                         ]
                         .map((component, index) => (
                             <ScrollSpySection key={index} value={["general", "tech-stack", "project-collaborators", "danger-zone"][index]}>
