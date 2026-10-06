@@ -12,8 +12,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "coop",
-  description: "",
+  title: "Coop | Make the work easier to move",
+  description: "A focused workspace for projects, tasks, and collaborators.",
 };
 
 const roobert = localFont({
