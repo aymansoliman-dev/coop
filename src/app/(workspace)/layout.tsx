@@ -9,7 +9,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             className="grid! h-dvh w-dvw min-h-0 min-w-0 grid-cols-[auto_minmax(0,1fr)] grid-rows-[auto_minmax(0,1fr)] overflow-hidden"
             style={
                 {
-                    "--sidebar-width": "calc(var(--spacing) * 72)",
+                    "--sidebar-width": "calc(var(--spacing) * 64)",
                     "--header-height": "calc(var(--spacing) * 12)",
                 } as React.CSSProperties
             }

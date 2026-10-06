@@ -3,7 +3,7 @@
 import { useCallback, useState } from 'react'
 import { SidebarGroup, SidebarGroupLabel, SidebarMenuButton, SidebarMenuItem } from "@/shared/components/ui/sidebar"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/shared/components/ui/collapsible"
-import { ChevronRightIcon, TrashIcon, SettingsIcon } from "lucide-react"
+import { ChevronRightIcon, TrashIcon, SettingsIcon } from "@/assets/icons"
 import { MoreVerticalIcon } from '@/assets/icons'
 import { ProjectsIcon, BoxIcon } from '@/assets/icons/'
 import { useProjectsList } from '@/features/projects/hooks/useProjectsList'
