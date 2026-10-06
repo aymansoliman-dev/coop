@@ -30,7 +30,11 @@ export function LoginForm({ className, ...props }: ComponentProps<"div">) {
     mutationFn: login,
     onSuccess: (data) => {
       localStorage.setItem('token', data.token)
-      queryClient.invalidateQueries({ queryKey: ['authUser'] }) 
+      if (data.user) {
+        queryClient.setQueryData(['authUser'], data.user)
+      } else {
+        queryClient.invalidateQueries({ queryKey: ['authUser'] })
+      }
 
       toast.add({
         type: "success",
@@ -70,29 +74,31 @@ export function LoginForm({ className, ...props }: ComponentProps<"div">) {
               Don&apos;t have an account? <a href="/signup">Sign up</a>
             </FieldDescription>
           </div>
-          <Field>
-            <FieldLabel htmlFor="email">Email</FieldLabel>
+          <Field className="flex-row gap-0 border">
+            <FieldLabel htmlFor="email" className="w-fit! px-2 border-r text-muted-foreground">Email</FieldLabel>
             <Input
               id="email"
               name="email" // 💡 Required for FormData to target this input
               type="email"
               placeholder="m@example.com"
+              className="border-none"
               disabled={loginMutation.isPending}
               required
             />
           </Field>
-          <Field>
-            <FieldLabel htmlFor="password">Password</FieldLabel>
-            <div className="flex gap-1">
+          <Field className="flex-row gap-0 border">
+            <FieldLabel htmlFor="password" className="w-fit! text-muted-foreground px-2 border-r">Password</FieldLabel>
+            <div className="flex">
               <Input
                 id="password"
                 name="password" // 💡 Required for FormData to target this input
                 type={ passwordIsVisible? "text": "password" }
                 placeholder="password"
+                className="border-r z-10"
                 disabled={loginMutation.isPending}
                 required
               />
-              <Button variant="secondary" onClick={() => setPasswordIsVisible(!passwordIsVisible)} className="border-border h-full aspect-square py-[.7rem]" disabled={loginMutation.isPending}>
+              <Button variant="secondary" onClick={() => setPasswordIsVisible(!passwordIsVisible)} className="border-none h-full aspect-square py-[.7rem]" disabled={loginMutation.isPending}>
                 { passwordIsVisible ? <EyeIcon /> : <EyeClosedIcon /> }
               </Button>
             </div>
