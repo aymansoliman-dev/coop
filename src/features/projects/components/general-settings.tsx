@@ -5,7 +5,6 @@ import { useUpdateProject } from '@/features/projects/hooks/use-update-project'
 import { Controller, useForm, SubmitHandler } from 'react-hook-form'
 import { useEffect, useState } from 'react'
 import { z } from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
 import { 
     Card, 
     CardContent, 
@@ -20,6 +19,7 @@ import { FieldGroup, Field } from '@/shared/components/ui/field'
 import { Label } from '@/shared/components/ui/label'
 import { Switch } from '@/shared/components/ui/switch'
 import { LockIcon, LockOpenIcon } from '@/assets/icons'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/components/ui/tooltip'
 
 const schema = z.object({
   name: z.string().min(1, "Required").max(50),
@@ -95,11 +95,18 @@ export default function GeneralSettings({ projectId }: { projectId: string }) {
                         control={control}
                         render={({ field }) => (
                             <>
-                                <Switch
-                                    id="private"
-                                    checked={field.value ?? true}
-                                    onCheckedChange={field.onChange}
-                                />
+                                <Tooltip>
+                                    <TooltipTrigger render={
+                                        <Switch
+                                            id="private"
+                                            checked={field.value ?? true}
+                                            onCheckedChange={field.onChange}
+                                        />
+                                    } />
+                                    <TooltipContent>
+                                        {field.value ? "Private" : "Public"}
+                                    </TooltipContent>
+                                </Tooltip>
                                 <Label htmlFor="private">
                                     {field.value ? (
                                         <LockIcon size={20} />
@@ -122,7 +129,12 @@ export default function GeneralSettings({ projectId }: { projectId: string }) {
                                 <Input type='text' id="name" {...register("name")} className="border-none" />
                             </Field>
                             <Field className="w-auto border">
-                                <Input id="theme" type="color"  {...register("theme")} className="w-12! p-0" />
+                                <Tooltip>
+                                    <TooltipTrigger render={
+                                        <Input id="theme" type="color"  {...register("theme")} className="w-12! p-0 cursor-pointer" />
+                                    } />
+                                    <TooltipContent>Theme</TooltipContent>
+                                </Tooltip>
                             </Field>
                         </div>
                         <Field className="border relative">
