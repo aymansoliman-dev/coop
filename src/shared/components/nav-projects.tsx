@@ -71,8 +71,8 @@ export function NavProjects() {
                             <div className="w-12 p-4">
                               { 
                                 project.logo ? 
-                                  <Image src={project.logo} alt={project.name} width={24} height={24} unoptimized className='shrink-0 object-cover object-center scale-115' /> 
-                                  : <BoxIcon color={project.theme} fill={project.theme} className='scale-115' />
+                                  <Image src={project.logo} alt={project.name} width={24} height={24} unoptimized className='shrink-0 object-cover object-center scale-110' /> 
+                                  : <BoxIcon color={project.theme} fill={project.theme} className='scale-110' />
                               }
                             </div>
                             <span className="group-data-[collapsible=icon]:hidden h-full grow flex items-center">{project.name}</span>
