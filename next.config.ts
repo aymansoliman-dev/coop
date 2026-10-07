@@ -7,6 +7,14 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "2gt3gio2sceffbql.public.blob.vercel-storage.com",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.jsdelivr.net",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.simpleicons.org",
+      },
     ],
     qualities: [75, 100],
   },
