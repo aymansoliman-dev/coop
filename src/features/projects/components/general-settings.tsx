@@ -78,8 +78,6 @@ export default function GeneralSettings({ projectId }: { projectId: string }) {
         )
 
         mutate({ projectId, updates })
-
-        console.log(updates)
     }
 
     const resetDisabled = isMounted && !isDirty ? true : undefined
