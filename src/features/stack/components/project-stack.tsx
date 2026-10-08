@@ -15,19 +15,14 @@ export function ProjectStack({ projectId }: { projectId: string }) {
             {
                 stack.map((s: ProjectStackItem) => (
                     <li key={s.id}>
-                    <Tooltip>
-                        <TooltipTrigger render={
-                            <Image
-                                src={getDeviconUrl(s.name)}
-                                alt={s.name}
-                                width={24}
-                                height={24}
-                                loading="lazy"
-                                unoptimized
-                            />
-                        } />
-                        <TooltipContent side="bottom">{s.name.charAt(0).toUpperCase().concat(s.name.slice(1))}</TooltipContent>
-                    </Tooltip>
+                        <Image
+                            src={getDeviconUrl(s.name)}
+                            alt={s.name}
+                            width={24}
+                            height={24}
+                            loading="lazy"
+                            unoptimized
+                        />    
                     </li>) 
                 )
             }

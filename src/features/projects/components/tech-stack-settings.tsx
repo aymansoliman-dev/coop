@@ -145,7 +145,7 @@ export default function TechStackSettings({ projectId }: { projectId: string }) 
                                 multiple
                                 autoHighlight
                                 items={techFirstCatalog}
-                                limit={50}
+                                limit={32}
                                 value={field.value}
                                 onValueChange={field.onChange}
                                 itemToStringLabel={(item) => item.name}
