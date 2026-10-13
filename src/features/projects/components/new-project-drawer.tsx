@@ -5,7 +5,7 @@ import { ProjectNameField         } from '@/features/projects/components/project
 import { ProjectLogoField         } from "@/features/projects/components/project-logo-field"
 import { SidebarMenuButton        } from "@/shared/components/ui/sidebar"
 import { useCreateProject         } from "@/features/projects/hooks/useCreateProject"
-import { InfoIcon, PlusCircleIcon           } from "lucide-react"
+import { InfoIcon, PlusSquareIcon } from "lucide-react"
 import { useCallback, useState    } from "react"
 import { Button                   } from "@/shared/components/ui/button"
 import { Drawer, 
@@ -55,19 +55,19 @@ export function NewProjectDrawer() {
   }, [form, mutate])
   
   return (
-    <Drawer swipeDirection={isMobile? 'down': 'left'} onOpenChange={setOpen} open={open}>
+    <Drawer swipeDirection={isMobile? 'down': 'left'} onOpenChange={() => form.reset()}>
       <DrawerTrigger
         render={
           <SidebarMenuButton
             variant="default"
-            className="w-full h-12 p-0 flex justify-center items-center bg-primary text-primary-foreground"
+            className="w-full h-12 p-0 gap-0 flex items-center bg-primary text-primary-foreground"
             aria-label="Create new project"
             tooltip="Create new project"
           >
-            <span className="group-data-[collapsible=icon]:hidden whitespace-nowrap">New project</span>
             <div className="w-12 p-4">
-              <PlusCircleIcon />
+              <PlusSquareIcon />
             </div>
+            <span className="group-data-[collapsible=icon]:hidden whitespace-nowrap">New Project</span>
           </SidebarMenuButton>
         }
       />
