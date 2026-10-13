@@ -10,7 +10,7 @@ import { CameraIcon, FileTextIcon, DatabaseIcon, FileChartColumnIcon, FileIcon }
 import { LogoutIcon } from "@/assets/icons"
 import { LayoutDashboardIcon } from "@/assets/icons"
 import Image from 'next/image'
-import { NewProjectDialog } from "@/features/projects/components/new-project-dialog"
+import { NewProjectDrawer } from "@/features/projects/components/new-project-drawer"
 import { useRouter } from "next/navigation"
 import { useCallback } from "react"
 import { toast } from "./ui/toast"
@@ -133,16 +133,16 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     router.push("/login")
     toast.add({
       type: "success",
-      description: "logged out successfully",
+      description: "Logged out",
     })
   }, [router])
 
   return (
-    <Sidebar className="select-none" collapsible="icon" {...props}>
-      <SidebarHeader className="flex-row items-center gap-4 border-b h-(--header-height) p-0">
+    <Sidebar className="select-none" collapsible="offcanvas" {...props}>
+      <SidebarHeader className="flex-row items-center gap-4 border-b h-(--header-height) px-4">
         {/*<CommandIcon className="size-5!" />*/}
-        <Image src="https://res.cloudinary.com/dxlofja7z/image/upload/v1789662878/coop_dhxvx8.svg" width={32} height={32} alt="coop logo" className="w-12 h-full" loading="eager" />
-        <span className="text-2xl group-data-[collapsible=icon]:hidden">coop</span>
+        <Image src="https://res.cloudinary.com/dxlofja7z/image/upload/v1789662878/coop_dhxvx8.svg" width={16} height={16} alt="coop logo" loading="eager" />
+        <span className="group-data-[collapsible=icon]:hidden">coop</span>
       </SidebarHeader>
       {/**/}
       <SidebarContent>
@@ -154,7 +154,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarContent>
       {/**/}
       <SidebarFooter className="gap-0">
-        <NewProjectDialog />
+        <NewProjectDrawer />
         {/*  */}
         <SidebarMenuButton className="h-12 p-0 gap-0" tooltip="Logout" onClick={handleLogout} >
           <div className="w-12 p-4">

@@ -5,7 +5,7 @@ import { ProjectNameField         } from '@/features/projects/components/project
 import { ProjectLogoField         } from "@/features/projects/components/project-logo-field"
 import { SidebarMenuButton        } from "@/shared/components/ui/sidebar"
 import { useCreateProject         } from "@/features/projects/hooks/useCreateProject"
-import { PlusCircleIcon           } from "lucide-react"
+import { InfoIcon, PlusCircleIcon           } from "lucide-react"
 import { useCallback, useState    } from "react"
 import { Button                   } from "@/shared/components/ui/button"
 import { Drawer, 
@@ -13,6 +13,7 @@ import { Drawer,
   DrawerContent, DrawerHeader, 
   DrawerTitle, DrawerDescription, 
   DrawerFooter                    } from "@/shared/components/ui/drawer"
+import { useIsMobile } from "@/shared/hooks/use-mobile"
 
 type ProjectFormValues = {
   name: string
@@ -23,6 +24,7 @@ type ProjectFormValues = {
 
 export function NewProjectDrawer() {
   const { mutate, isPending } = useCreateProject()
+  const isMobile = useIsMobile()
   const [ open, setOpen ] = useState<boolean>(false)
 
   const form = useForm<ProjectFormValues>({
@@ -53,7 +55,7 @@ export function NewProjectDrawer() {
   }, [form, mutate])
   
   return (
-    <Drawer swipeDirection="left" onOpenChange={setOpen} open={open}>
+    <Drawer swipeDirection={isMobile? 'down': 'left'} onOpenChange={setOpen} open={open}>
       <DrawerTrigger
         render={
           <SidebarMenuButton
@@ -72,12 +74,14 @@ export function NewProjectDrawer() {
       <DrawerContent>
         <DrawerHeader className="gap-1">
           <DrawerTitle>Create new project</DrawerTitle>
-          <DrawerDescription>Add new project details to create a new project</DrawerDescription>
+          <DrawerDescription>
+            Add new project details to create a new project
+          </DrawerDescription>
         </DrawerHeader>
         {/*  */}
         <div className="grow">
           <FormProvider {...form}>
-            <form onSubmit={createNewProject} className="flex flex-col gap-4 h-full">
+            <form onSubmit={createNewProject} className="flex flex-col h-full">
               <div className="grow p-4 flex flex-col gap-4">
                 <div className="flex">
                   <ProjectLogoField />
@@ -85,11 +89,12 @@ export function NewProjectDrawer() {
                 </div>
                 <ProjectPrivacyField />
                 <ProjectStatementField />
+                <p className="text-muted-foreground text-xs flex items-center gap-1"><InfoIcon size={14} />These settings can be changed later</p>
               </div>
 
-              <DrawerFooter>
-                <Button type="submit" disabled={isPending}>Create project</Button>
+              <DrawerFooter className="flex-row *:grow">
                 <DrawerClose render={<Button variant="outline" />}>Discard</DrawerClose>
+                <Button type="submit" disabled={isPending}>Create project</Button>
               </DrawerFooter>
             </form>
           </FormProvider>

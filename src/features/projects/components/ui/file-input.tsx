@@ -53,7 +53,7 @@ export function FileInput({ name }: { name: string }) {
                   {files.map((file) => (
                     <FileUploadItem key={file.name} value={file} className="p-0 h-full w-full border-none">
                       <FileUploadItemPreview className="size-24 [&>svg]:size-12 h-full w-full border-none p-2" />
-                      <FileUploadItemDelete className="absolute -top-3 -left-3 z-10 h-fit p-0 border border-accent bg-foreground text-accent" onClick={(e) => e.stopPropagation()} render={<XIcon />} />
+                      <FileUploadItemDelete className="absolute -top-2 -left-2 z-10 h-fit p-0 border border-accent bg-foreground text-accent" onClick={(e) => e.stopPropagation()} render={<XIcon size={18} />} />
                     </FileUploadItem>
                   ))}
                 </FileUploadList>
