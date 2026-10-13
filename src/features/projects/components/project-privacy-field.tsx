@@ -9,8 +9,8 @@ export function ProjectPrivacyField() {
   const { control } = useFormContext<ProjectFormValues>()
 
   return (
-    <Field>
-      <Label htmlFor="privacy" className="ml-1">Privacy</Label>
+    <Field className="flex-row gap-0 border h-10">
+      <Label htmlFor="privacy" className="w-20! px-2 border-r text-muted-foreground">Privacy</Label>
       <Controller
         name="privacy"
         control={control}
@@ -21,14 +21,14 @@ export function ProjectPrivacyField() {
             value={field.value}
             onValueChange={field.onChange}
           >
-            <SelectTrigger id="privacy">
+            <SelectTrigger id="privacy" className="h-full!">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectGroup>
+              <SelectGroup className="">
                 <SelectLabel>Privacy</SelectLabel>
-                <SelectItem value="Public">Public</SelectItem>
-                <SelectItem value="Private">Private</SelectItem>
+                <SelectItem value="Public" className="h-10">Public</SelectItem>
+                <SelectItem value="Private" className="h-10">Private</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>

@@ -213,6 +213,7 @@ interface FileUploadProps extends Omit<
   ) => Promise<void> | void
   accept?: string
   maxFiles?: number
+  replaceOnSelect?: boolean
   maxSize?: number
   dir?: Direction
   label?: string
@@ -235,6 +236,7 @@ function FileUpload(props: FileUploadProps) {
     onUpload,
     accept,
     maxFiles,
+    replaceOnSelect = false,
     maxSize,
     dir: dirProp,
     label,
@@ -498,7 +500,7 @@ function FileUpload(props: FileUploadProps) {
         }
       }
     },
-    [store, propsRef, onProgress],
+    [store, propsRef, onProgress, replaceOnSelect],
   )
 
   const onFilesChange = React.useCallback(
@@ -509,7 +511,7 @@ function FileUpload(props: FileUploadProps) {
       let invalid = false
 
       if (maxFiles) {
-        const currentCount = store.getState().files.size
+        const currentCount = replaceOnSelect ? 0 : store.getState().files.size
         const remainingSlotCount = Math.max(0, maxFiles - currentCount)
 
         if (remainingSlotCount < filesToProcess.length) {
@@ -593,6 +595,10 @@ function FileUpload(props: FileUploadProps) {
       }
 
       if (acceptedFiles.length > 0) {
+        if (replaceOnSelect) {
+          store.dispatch({ type: "SET_FILES", files: [] })
+        }
+
         store.dispatch({ type: "ADD_FILES", files: acceptedFiles })
 
         if (isControlled && propsRef.current.onValueChange) {
@@ -886,7 +892,7 @@ function FileUploadDropzone(props: FileUploadDropzoneProps) {
         dir: context.dir,
         tabIndex: context.disabled ? undefined : 0,
         className: cn(
-          "relative flex flex-col items-center justify-center gap-2 border-2 border-dashed p-6 transition-colors outline-none select-none hover:bg-accent/30 focus-visible:border-ring/50 data-disabled:pointer-events-none data-dragging:border-primary/30 data-dragging:bg-accent/30 data-invalid:border-destructive data-invalid:ring-destructive/20",
+          "relative flex h-full flex-col items-center justify-center gap-2 border-2 border-dashed p-6 transition-colors outline-none select-none hover:bg-accent/30 focus-visible:border-ring/50 data-disabled:pointer-events-none data-dragging:border-primary/30 data-dragging:bg-accent/30 data-invalid:border-destructive data-invalid:ring-destructive/20",
           className,
         ),
         onClick,

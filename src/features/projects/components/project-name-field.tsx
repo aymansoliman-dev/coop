@@ -10,18 +10,18 @@ export function ProjectNameField() {
   } = useFormContext<{ name: string }>()
 
   return (
-    <Field>
-      <Label htmlFor="name" className="ml-1">Project Name</Label>
+    <Field className="flex-row gap-0 border">
       <Input
         id="name"
         placeholder="Project Name"
+        className="border-0!"
         aria-invalid={Boolean(errors.name)}
         {...register("name", {
           required: "Project name is required",
           validate: value => value.trim().length > 0 || "Project name is required",
         })}
+        required
       />
-      {errors.name && <p className="text-sm text-left text-destructive">{errors.name.message}</p>}
     </Field>
   )
 }
