@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Coop | Make the work easier to move",
+  title: "coop",
   description: "A focused workspace for projects, tasks, and collaborators.",
 };
 
