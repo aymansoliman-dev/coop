@@ -1,7 +1,7 @@
 import { SidebarInset, SidebarProvider } from "@/shared/components/ui/sidebar";
 import { AppSidebar } from "@/shared/components/app-sidebar";
 import { SiteHeader } from "@/shared/components/site-header";
-import { WorkspaceBall } from "@/shared/components/workspace-ball";
+// import { WorkspaceBall } from "@/shared/components/workspace-ball";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
@@ -22,7 +22,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
             <SidebarInset className="grid! min-h-0 min-w-0 overflow-hidden">
                 <div className="relative min-h-0 min-w-0 overflow-hidden">
-                    <WorkspaceBall />
+                    {/* <WorkspaceBall /> */}
                     <div className="relative z-10 min-h-0 min-w-0 h-full overflow-auto">
                         {children}
                     </div>
