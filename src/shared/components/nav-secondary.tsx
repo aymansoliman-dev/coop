@@ -44,7 +44,7 @@ export function NavSecondary({...props}: {} & React.ComponentPropsWithoutRef<typ
   const pathname = usePathname()
 
   return (
-    <SidebarGroup {...props} className="border-t p-0 mt-auto">
+    <SidebarGroup {...props} className="border-y p-0 mt-auto">
       <SidebarGroupContent>
         <SidebarMenu>
           {items.map((item) => (

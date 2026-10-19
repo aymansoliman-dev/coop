@@ -30,7 +30,7 @@ export function NavUser() {
   if (!user) return null
 
   return (
-    <div className="ml-auto h-full aspect-square border-l">  
+    <div className="h-full aspect-square border-l">  
       <DropdownMenu>
         <DropdownMenuTrigger className="p-0 h-full w-full">
           <Avatar className="h-full w-full grayscale">

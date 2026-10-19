@@ -348,9 +348,9 @@ function DraggableRow({
     </TableRow>
   )
 }
-export function DataTable({
+export function DataTable({ 
   data: initialData,
-}: {
+}: { 
   data: z.infer<typeof schema>[]
 }) {
   const [data, setData] = React.useState(() => initialData)

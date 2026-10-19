@@ -51,9 +51,6 @@ export function NavProjects() {
                   </div>
                   <span className="group-data-[collapsible=icon]:hidden h-full flex items-center grow font-medium">Projects</span>
                 </SidebarGroupLabel>
-                <div className="h-full p-4 flex items-center">
-                  <ChevronRightIcon className={`group-data-[collapsible=icon]:hidden size-4 transition-all${isOpen? " rotate-90" : ""}`} />
-                </div>
                 <span className="sr-only">Toggle details</span>
               </SidebarMenuButton>
             }>

@@ -10,7 +10,7 @@ import { CameraIcon, FileTextIcon, DatabaseIcon, FileChartColumnIcon, FileIcon }
 import { LogoutIcon } from "@/assets/icons"
 import { LayoutDashboardIcon } from "@/assets/icons"
 import Image from 'next/image'
-import { NewProjectDrawer } from "@/features/projects/components/new-project-drawer"
+import { NewProjectForm } from "@/features/projects/components/new-project-form"
 import { useRouter } from "next/navigation"
 import { useCallback } from "react"
 import { toast } from "./ui/toast"
@@ -139,9 +139,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   return (
     <Sidebar className="select-none" collapsible="offcanvas" {...props}>
-      <SidebarHeader className="flex-row items-center gap-4 border-b h-(--header-height) px-4">
+      <SidebarHeader className="flex-row items-center gap-4 border-b h-12 md:h-(--header-height) px-4">
         {/*<CommandIcon className="size-5!" />*/}
-        <Image src="https://res.cloudinary.com/dxlofja7z/image/upload/v1789662878/coop_dhxvx8.svg" width={16} height={16} alt="coop logo" loading="eager" />
+        <Image src="https://res.cloudinary.com/dxlofja7z/image/upload/v1789662878/coop_dhxvx8.svg" width={20} height={20} alt="coop logo" loading="eager" />
         <span className="group-data-[collapsible=icon]:hidden">coop</span>
       </SidebarHeader>
       {/**/}
@@ -154,7 +154,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarContent>
       {/**/}
       <SidebarFooter className="gap-0">
-        <NewProjectDrawer />
+        <NewProjectForm />
         {/*  */}
         <SidebarMenuButton className="h-12 p-0 gap-0" tooltip="Logout" onClick={handleLogout} >
           <div className="w-12 p-4">
