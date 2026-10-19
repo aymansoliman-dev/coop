@@ -1,4 +1,5 @@
 export { LayoutDashboardIcon    } from './layout-dashboard-icon'
+export { OpenPanelLeftIcon      } from './open-panel-left-icon'
 export { NotificationsIcon      } from './notifications-icon'
 export { MoreVerticalIcon       } from './more-vertical-icon'
 export { ChevronRightIcon       } from './chevron-right-icon'
