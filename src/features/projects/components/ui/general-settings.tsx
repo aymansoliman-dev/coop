@@ -136,8 +136,8 @@ export default function GeneralSettings({ projectId }: { projectId: string }) {
                             </Field>
                         </div>
                         <Field className="border relative">
-                            <Label htmlFor="statement" className="absolute top-0 left-0 p-2 text-muted-foreground border-b border-r w-fit! bg-card">Statement</Label>
-                            <Textarea id="statement" {...register("statement")} className="border-none pt-10" />
+                            <Label htmlFor="statement" className="absolute top-0 left-0 p-2 text-muted-foreground border-b border-r w-fit! bg-card h-10">Statement</Label>
+                            <Textarea id="statement" {...register("statement")} className="border-none pt-12" />
                         </Field>
                     </FieldGroup>
                 </form>

@@ -20,6 +20,8 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import type { ProjectStackItem, StackCatalogItem } from "@/features/stack/types";
 import { useUpdateProjectStack } from "@/features/stack/hooks/use-update-project-stack";
 
+import { TECH_FIRST_ELEMENTS } from "@/features/stack/storage/constants"
+
 type Fields = {
     stack: StackCatalogItem[]
 }
@@ -28,50 +30,6 @@ const EMPTY_STACK_CATALOG: StackCatalogItem[] = []
 const EMPTY_PROJECT_STACK: ProjectStackItem[] = []
 
 
-const TECH_FIRST_ELEMENTS = [
-    "typescript",
-    "javascript",
-    "react",
-    "nextjs",
-    "nodejs",
-    "npm",
-    "pnpm",
-    "yarn",
-    "vite",
-    "vue",
-    "nuxt",
-    "angular",
-    "svelte",
-    "tailwindcss",
-    "html5",
-    "css3",
-    "sass",
-    "python",
-    "django",
-    "flask",
-    "java",
-    "spring",
-    "csharp",
-    "dotnet",
-    "go",
-    "rust",
-    "php",
-    "laravel",
-    "ruby",
-    "rubyonrails",
-    "postgresql",
-    "mysql",
-    "mongodb",
-    "redis",
-    "graphql",
-    "docker",
-    "kubernetes",
-    "amazonwebservices",
-    "googlecloud",
-    "firebase",
-    "git",
-    "github",
-] as const
 
 export default function TechStackSettings({ projectId }: { projectId: string }) {
     const { data: stackCatalog } = useStackCatalog() as { data?: StackCatalogItem[] }
