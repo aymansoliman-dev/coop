@@ -184,6 +184,12 @@ main > div {
     border-radius: 0;
   }
 
+  input,
+  textarea,
+  select {
+    font-family: var(--font-roobert);
+  }
+
   button {
     font-family: var(--font-button);
   }
@@ -224,6 +230,7 @@ main > div {
   animation: shimmer 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
+/*
 .ball {
   animation: ball-drift 30s ease-in-out infinite alternate;
   filter: blur(10rem);
@@ -255,3 +262,4 @@ main > div {
     animation: none;
   }
 }
+*/
