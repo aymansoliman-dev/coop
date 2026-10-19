@@ -1,6 +1,6 @@
 import { BoxIcon, BoxIconSkeleton } from '@/assets/icons'
 import { useProject } from '@/features/projects/hooks/useProject'
-import { ProjectStatement } from '@/features/projects/components/project-statement'
+import { ProjectStatement } from '@/features/projects/components/ui/project-statement'
 import { ProjectCollaborators } from '@/features/collaborations/components/project-collaborators'
 import { ProjectStack } from '@/features/stack/components/project-stack'
 import { TasksTable } from '@/features/tasks/components/tasks-table'
@@ -13,12 +13,12 @@ export default function ProjectOverview({ projectId }: { projectId: string }) {
 
     return (
         <>
-            <div className="relative z-20 flex items-center gap-4 py-8 px-4 lg:px-8 border-b">
-                <div className="w-32 aspect-square overflow-hidden rounded-2xl">
+            <div className="relative z-20 flex items-center gap-4 py-8 px-4 lg:px-8 border-b mt-5">
+                <div className="w-20 aspect-square overflow-hidden rounded-2xl select-none">
                     {
                         isPending ?
                             <BoxIconSkeleton size="full" className="text-muted-foreground/30" />
-                            : project.logo ? <Image quality={100} src={project.logo} alt={project.name + ' logo'} className="h-full w-full object-cover object-center" width={48} height={48} unoptimized />
+                            : project.logo ? <Image quality={100} src={project.logo} alt={project.name + ' logo'} className="h-full w-full object-cover object-center" width={32} height={32} unoptimized />
                                 : <BoxIcon color={project.theme} fill={project.theme} size="full" />
                     }
                 </div>

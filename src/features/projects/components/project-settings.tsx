@@ -1,13 +1,13 @@
 import Link from "next/link"
-import GeneralSettings from "@/features/projects/components/general-settings"
-import TechStackSettings from "@/features/projects/components/tech-stack-settings"
-import CollaboratorsSettings from "@/features/projects/components/collaborators-settings"
-import DangerZoneSettings from "@/features/projects/components/danger-zone-settings"
-import AssetsSettings from "@/features/projects/components/assets-settings"
+import GeneralSettings from "@/features/projects/components/ui/general-settings"
+import TechStackSettings from "@/features/projects/components/ui/tech-stack-settings"
+import CollaboratorsSettings from "@/features/projects/components/ui/collaborators-settings"
+import DangerZoneSettings from "@/features/projects/components/ui/danger-zone-settings"
+import AssetsSettings from "@/features/projects/components/ui/assets-settings"
 import { Button } from "@/shared/components/ui/button"
-import { SettingsIcon } from "@/assets/icons"
 import { useState } from "react"
 import { ScrollSpy, ScrollSpyLink, ScrollSpyNav, ScrollSpySection, ScrollSpyViewport } from "@/shared/components/ui/scroll-spy"
+import { BoltIcon } from "lucide-react"
 
 const navigationItems = [
     { href: "general", label: "General" },
@@ -21,11 +21,11 @@ export default function ProjectSettings({ projectId }: { projectId: string }) {
     const [scrollContainer, setScrollContainer] = useState<HTMLDivElement | null>(null);
 
     return (
-        <div className="grid h-full min-h-0 min-w-0 grid-rows-[auto_minmax(0,1fr)] overflow-hidden bg-background">
-            <div className="min-h-0 bg-background py-8 border-b px-4 lg:px-8">
+        <div className="grid h-full min-h-0 min-w-0 grid-rows-[auto_minmax(0,1fr)] overflow-hidden bg-background mt-4">
+            <div className="min-h-0 bg-background py-8 border-b px-4 lg:px-6">
                 <div className="flex items-center gap-2">
                     <h3 className="text-2xl font-bold">Project Settings</h3>
-                    <SettingsIcon />
+                    <BoltIcon />
                 </div>
                 <p className="text-muted-foreground">Manage how this project looks, who can work on it, and what it is built with.</p>
             </div>
