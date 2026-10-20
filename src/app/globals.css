@@ -186,7 +186,8 @@ main > div {
 
   input,
   textarea,
-  select {
+  select,
+  span {
     font-family: var(--font-roobert);
   }
 
