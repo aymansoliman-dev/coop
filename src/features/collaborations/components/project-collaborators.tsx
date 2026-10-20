@@ -8,11 +8,11 @@ export function ProjectCollaborators ({ projectId }: { projectId: string }) {
     if (!collaborators || collaborators.length === 0) return null
 
     return (
-        <div className="px-4 lg:px-8 border-b">
+        <div className="ml-auto">
             <AvatarGroup className="flex gap-2 items-center">
                 {
                     collaborators.map((collaborator: { id: string, name: string, avatar: string }) => (
-                        <Avatar key={collaborator.id}>
+                        <Avatar key={collaborator.id} className="rounded-none! border-none">
                             <AvatarImage src={collaborator.avatar} alt={collaborator.name} />
                             <AvatarFallback>{avatarFallbackText(collaborator.name)}</AvatarFallback>
                         </Avatar>
