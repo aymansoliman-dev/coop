@@ -11,7 +11,7 @@ export function ProjectStack({ projectId }: { projectId: string }) {
     const { data: stack = [] } = useProjectStack(projectId)
 
     return (
-        <ul className="flex items-center gap-2">
+        <ul className="flex items-center gap-2 select-none">
             {
                 stack.map((s: ProjectStackItem) => (
                     <li key={s.id}>
