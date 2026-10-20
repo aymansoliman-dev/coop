@@ -9,6 +9,7 @@ import { HomeIcon } from '@/assets/icons'
 import { EmptyPage } from '@/shared/components/empty-page'
 import { getSelectionForeground } from '@/shared/lib/utils' 
 import { BoltIcon } from 'lucide-react'
+import { KBD } from '@/shared/components/kbd'
 
 export default function Project() {
     const { projectId } = useParams<{ projectId: string }>()
@@ -26,7 +27,8 @@ export default function Project() {
             className="relative h-full min-h-0 min-w-0 overflow-hidden selection:bg-(--project-theme) selection:text-(--project-selection-foreground)!"
             style={{
                 "--project-theme": project.theme,
-                "--project-selection-foreground": selectionForeground,
+                "--project-selection-foreground":
+                    "oklch(from var(--project-theme) clamp(0, (0.7 - l) * 1000, 1) 0 0)",
             } as React.CSSProperties}
         >
             <Tabs
@@ -34,7 +36,7 @@ export default function Project() {
                 onValueChange={(value) => router.push(`/projects/${projectId}?tab=${value}`)}
                 className="h-full min-h-0 w-full"
             >
-                <TabsList className="rleft-0 z-30 fixed top-(--header-height) select-none">
+                <TabsList className="z-30 fixed top-(--header-height) select-none">
                     <TabsTrigger value="overview" style={{ borderTop: "none" }}>
                         <HomeIcon />
                         Overview
@@ -42,6 +44,7 @@ export default function Project() {
                     <TabsTrigger value="settings" style={{ borderTop: "none" }}>
                         <BoltIcon />
                         Settings
+                        <KBD action={() => router.push(`/projects/${projectId}?tab=settings`)} enabled={!!projectId}>Ctrl + Shift + ,</KBD>
                     </TabsTrigger>
                     {/* <TabsTrigger value="analytics">Analytics</TabsTrigger> */}
                 </TabsList>
