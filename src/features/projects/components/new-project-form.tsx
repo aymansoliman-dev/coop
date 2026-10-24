@@ -14,6 +14,7 @@ import { Drawer,
   DrawerTitle, DrawerDescription, 
   DrawerFooter                    } from "@/shared/components/ui/drawer"
 import { useIsMobile              } from "@/shared/hooks/use-mobile"
+import { KBD } from "@/shared/components/kbd"
 
 type ProjectFormValues = {
   name: string
@@ -26,6 +27,7 @@ export function NewProjectForm() {
   const { mutate, isPending } = useCreateProject()
   const isMobile = useIsMobile()
   const drawerCloseRef = useRef<HTMLButtonElement | null>(null)
+  const drawerTriggerRef = useRef<HTMLButtonElement | null>(null)
 
   const form = useForm<ProjectFormValues>({
     defaultValues: { name: "", privacy: "Private", statement: "", logo: null },
@@ -59,6 +61,7 @@ export function NewProjectForm() {
       <DrawerTrigger
         render={
           <SidebarMenuButton
+            ref={drawerTriggerRef}
             variant="default"
             className="w-full h-12 p-0 gap-0 flex items-center bg-primary text-primary-foreground"
             aria-label="Create new project"
@@ -68,6 +71,7 @@ export function NewProjectForm() {
               <PlusSquareIcon />
             </div>
             <span className="group-data-[collapsible=icon]:hidden whitespace-nowrap">New Project</span>
+            <KBD className="ml-auto mr-4 bg-primary-foreground/20 text-primary-foreground" action={() => drawerTriggerRef.current?.click()}>Alt + Shift + N</KBD>
           </SidebarMenuButton>
         }
       />
