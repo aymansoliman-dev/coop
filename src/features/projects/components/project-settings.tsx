@@ -42,7 +42,7 @@ export default function ProjectSettings({ projectId }: { projectId: string }) {
                 </ScrollSpyNav>
                 <ScrollSpyViewport
                     ref={setScrollContainer}
-                    className="overflow-y-auto px-4 py-7 scroll-fade-y gap-6"
+                    className="overflow-y-auto p-4 scroll-fade-y scrollbar-gutter-stable gap-6"
                 >
                     {
                         [
