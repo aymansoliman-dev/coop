@@ -12,9 +12,9 @@ export default function ProjectOverview({ projectId }: { projectId: string }) {
     const { data: project = {}, isPending } = useProject(projectId)
 
     return (
-        <>
-            <div className="relative z-20 flex items-center gap-4 py-8 px-4 lg:px-8 border-b mt-5">
-                <div className="w-20 aspect-square overflow-hidden rounded-2xl select-none">
+        <div className="flex flex-col h-full">
+            <div className="relative z-20 flex items-center gap-4 py-8 px-4 lg:px-8 mt-5">
+                <div className="w-24 aspect-square overflow-hidden rounded-2xl select-none">
                     {
                         isPending ?
                             <BoxIconSkeleton size="full" className="text-muted-foreground/30" />
@@ -27,9 +27,11 @@ export default function ProjectOverview({ projectId }: { projectId: string }) {
                     <ProjectStack projectId={projectId} />
                 </div>
             </div>
-            <ProjectCollaborators projectId={projectId} />
-            <ProjectStatement statement={project.statement} />
+            <div className="flex border mx-4 lg:mx-8">
+                <ProjectStatement statement={project.statement} />
+                <ProjectCollaborators projectId={projectId} />
+            </div>
             <TasksTable projectId={projectId} />
-        </>
+        </div>
     )
 }
