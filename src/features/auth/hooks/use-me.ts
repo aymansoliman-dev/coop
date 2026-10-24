@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { fetchLoggedInUser } from '@/features/auth/api';
 
-export function useAuthUser() {
+export function useMe() {
 
   const hasToken = typeof window !== 'undefined' && !!localStorage.getItem('token');
 
