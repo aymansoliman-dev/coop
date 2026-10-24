@@ -61,7 +61,7 @@ export function SignupForm({ className, ...props }: ComponentProps<"div">) {
             <Input
               id="name"
               type="text"
-              placeholder="John"
+              placeholder="John Doe"
               className={cn("border-none", errors.name && "border-destructive ring-2 ring-destructive/20")}
               aria-invalid={!!errors.name}
               disabled={isPending}
