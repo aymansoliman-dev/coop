@@ -1,14 +1,14 @@
 import { useQuery } from "@tanstack/react-query"
 import { getNotifications } from "@/features/notifications/api"
-import { useAuthUser } from "@/features/auth/hooks/useAuthUser"
+import { useMe } from "@/features/auth/hooks/use-me"
 
 export function useNotifications() {
     const hasToken =
         typeof window !== "undefined" && !!localStorage.getItem("token")
-    const { data: authUser } = useAuthUser()
+    const { data: me } = useMe()
 
     return useQuery({
-        queryKey: [authUser?.id, "notifications"],
+        queryKey: [me?.id, "notifications"],
         queryFn: getNotifications,
         enabled: hasToken,
 
