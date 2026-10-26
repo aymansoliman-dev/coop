@@ -1,9 +1,9 @@
-import { useProjectCollaborators } from '@/features/collaborations/hooks/useCollaborators'
+import { useProjectCollaborators } from '@/features/collaborations/hooks/use-collaborators'
 import { AvatarGroup, Avatar, AvatarImage, AvatarFallback } from '@/shared/components/ui/avatar'
 import { avatarFallbackText } from '@/shared/lib/utils'
 
-export function ProjectCollaborators ({ projectId }: { projectId: string }) {
-    const { data: collaborators = [] } = useProjectCollaborators(projectId)
+export function ProjectCollaborators () {
+    const { data: collaborators = [] } = useProjectCollaborators()
 
     if (!collaborators || collaborators.length === 0) return null
 
