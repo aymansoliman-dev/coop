@@ -2,17 +2,8 @@
 
 // import {ChartAreaInteractive} from "@/shared/components/chart-area-interactive";
 // import {DataTable} from "@/shared/components/data-table";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 
 export default function Dashboard() {
-
-  const router = useRouter();
-  useEffect(() => {
-      const token = localStorage.getItem("token");
-      if (!token) router.push('login')
-  }, [router])
-
   return (
       <div className="flex flex-1 flex-col">
         <div className="@container/main flex flex-1 flex-col gap-2 relative">
