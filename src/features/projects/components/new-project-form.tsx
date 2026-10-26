@@ -34,7 +34,7 @@ export function NewProjectForm() {
     mode: "onChange",
   })
 
-  const createNewProject = useCallback((event: any) => {
+  const createNewProject = useCallback((event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const submittedForm = event.currentTarget as HTMLFormElement
     const formData = new FormData(submittedForm)
@@ -107,8 +107,4 @@ export function NewProjectForm() {
       </DrawerContent>
     </Drawer>
   )
-}
-
-function userRef(arg0: null) {
-  throw new Error("Function not implemented.")
 }
