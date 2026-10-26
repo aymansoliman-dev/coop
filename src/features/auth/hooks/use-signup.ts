@@ -38,7 +38,7 @@ export function useSignup() {
                 type: "success",
                 description: "Great to have you here",
             })
-            router.push('/dashboard')
+            router.replace('/onboarding')
         }
     })
 }
