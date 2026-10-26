@@ -5,10 +5,9 @@ import { Button } from "@/shared/components/ui/button"
 import { Field, FieldGroup, FieldLabel, FieldSeparator } from "@/shared/components/ui/field"
 import { Input } from "@/shared/components/ui/input"
 import { Spinner } from '@/shared/components/ui/spinner'
-import { type ComponentProps, useEffect, useState } from 'react'
+import { type ComponentProps, useState } from 'react'
 import Image from 'next/image'
 import coop from '@/../public/coop.svg'
-import { useRouter } from 'next/navigation'
 import { useSignup } from '@/features/auth/hooks/use-signup'
 import { CheckCircle2, EyeClosedIcon, EyeIcon, Loader2, XCircle } from "lucide-react"
 import Link from "next/link"
@@ -18,7 +17,6 @@ import { checkUsername, type SignupData } from "@/features/auth/api"
 
 export function SignupForm({ className, ...props }: ComponentProps<"div">) {
   const [passwordIsVisible, setPasswordIsVisible] = useState(false)
-  const router = useRouter()
   const {
     register,
     handleSubmit,
@@ -31,13 +29,6 @@ export function SignupForm({ className, ...props }: ComponentProps<"div">) {
   const usernameHasValidFormat = /^[a-z0-9_-]{3,20}$/.test(username ?? "")
   const showUsernameStatus = Boolean(username && touchedFields.username)
 
-  useEffect(() => {
-    const token = localStorage.getItem('token')
-    if (token) {
-      router.push('/dashboard')
-    }
-  }, [router])
-
   const { mutate, isPending } = useSignup()
 
   function onSubmit(data: SignupData) {
@@ -46,7 +37,7 @@ export function SignupForm({ className, ...props }: ComponentProps<"div">) {
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+      <form method="POST" onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
         <div className="flex flex-col items-center gap-2 text-center">
           <div className="flex size-8 items-center justify-center">
             <Image src={coop} alt="coop" />

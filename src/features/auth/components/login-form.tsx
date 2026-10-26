@@ -5,24 +5,15 @@ import { Button } from "@/shared/components/ui/button"
 import { Field, FieldDescription, FieldGroup, FieldLabel, FieldSeparator } from "@/shared/components/ui/field"
 import { Input } from "@/shared/components/ui/input"
 import { Spinner } from '@/shared/components/ui/spinner'
-import { type ComponentProps, useEffect, useState } from 'react'
+import { type ComponentProps, useState } from 'react'
 import Image from 'next/image'
 import coop from '@/../public/coop.svg'
-import { useRouter } from 'next/navigation'
 import { useLogin } from '@/features/auth/hooks/use-login'
 import { EyeClosedIcon, EyeIcon } from "lucide-react"
 import Link from "next/link"
 
 export function LoginForm({ className, ...props }: ComponentProps<"div">) {
   const [passwordIsVisible, setPasswordIsVisible] = useState(false)
-  const router = useRouter()
-
-  useEffect(() => {
-    const token = localStorage.getItem('token')
-    if (token) {
-      router.push('/dashboard')
-    }
-  }, [router])
 
   const { mutate, isPending } = useLogin()
 
@@ -37,7 +28,7 @@ export function LoginForm({ className, ...props }: ComponentProps<"div">) {
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <form onSubmit={handleSubmit}>
+      <form method="POST" onSubmit={handleSubmit}>
         <FieldGroup>
           <div className="flex flex-col items-center gap-2 text-center">
             <div className="flex size-8 items-center justify-center">
