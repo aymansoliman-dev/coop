@@ -10,12 +10,13 @@ import { EmptyPage } from '@/shared/components/empty-page'
 import { getSelectionForeground } from '@/shared/lib/utils' 
 import { BoltIcon } from 'lucide-react'
 import { KBD } from '@/shared/components/kbd'
+import { useMe } from '@/features/auth/hooks/use-me'
+import { useEffect, useRef } from 'react'
 
 export default function Project() {
     const { projectId } = useParams<{ projectId: string }>()
-    const tabName = useSearchParams().get('tab') ?? 'overview'
-    const router = useRouter()
     const { data: project = {}, isError } = useProject(projectId)
+    const settingsTabRef = useRef<HTMLButtonElement>(null)
 
     if (isError) return <div className="w-full h-full flex justify-center items-center"><EmptyPage /></div>
     if (!project || !projectId) return null
@@ -31,32 +32,32 @@ export default function Project() {
                     "oklch(from var(--project-theme) clamp(0, (0.7 - l) * 1000, 1) 0 0)",
             } as React.CSSProperties}
         >
-            <Tabs
-                value={tabName}
-                onValueChange={(value) => router.push(`/projects/${projectId}?tab=${value}`)}
-                className="h-full min-h-0 w-full"
-            >
-                <TabsList className="z-30 fixed top-(--header-height) select-none">
-                    <TabsTrigger value="overview" style={{ borderTop: "none" }}>
-                        <HomeIcon />
-                        Overview
-                    </TabsTrigger>
-                    <TabsTrigger value="settings" style={{ borderTop: "none" }}>
-                        <BoltIcon />
-                        Settings
-                        <KBD action={() => router.push(`/projects/${projectId}?tab=settings`)} enabled={!!projectId}>Ctrl + Shift + ,</KBD>
-                    </TabsTrigger>
-                    {/* <TabsTrigger value="analytics">Analytics</TabsTrigger> */}
-                </TabsList>
+            { project.is_owner? 
+                <Tabs className="h-full min-h-0 w-full">
+                    <TabsList className="z-30 fixed top-(--header-height) select-none">
+                        <TabsTrigger value="overview" style={{ borderTop: "none" }}>
+                            <HomeIcon />
+                            Overview
+                        </TabsTrigger>
+                        <TabsTrigger value="settings" style={{ borderTop: "none" }} ref={settingsTabRef}>
+                            <BoltIcon />
+                            Settings
+                            <KBD action={() => settingsTabRef.current?.click()} enabled={!!projectId}>Ctrl + Shift + ,</KBD>
+                        </TabsTrigger>
+                        {/* <TabsTrigger value="analytics">Analytics</TabsTrigger> */}
+                    </TabsList>
 
-                <TabsContent value="overview">
-                    <ProjectOverview projectId={projectId} />
-                </TabsContent>
+                    <TabsContent value="overview">
+                        <ProjectOverview projectId={projectId} className="mt-5" />
+                    </TabsContent>
 
-                <TabsContent value="settings" className="min-h-0 overflow-hidden">
-                    <ProjectSettings projectId={projectId} />
-                </TabsContent>
-            </Tabs>
+                    <TabsContent value="settings" className="min-h-0 overflow-hidden">
+                        <ProjectSettings projectId={projectId} />
+                    </TabsContent>
+                </Tabs>
+
+                : <ProjectOverview projectId={projectId} />
+            }
         </div>
     )
 }
