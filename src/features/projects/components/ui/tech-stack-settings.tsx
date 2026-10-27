@@ -31,9 +31,9 @@ const EMPTY_PROJECT_STACK: ProjectStackItem[] = []
 
 
 
-export default function TechStackSettings({ projectId }: { projectId: string }) {
+export default function TechStackSettings() {
     const { data: stackCatalog } = useStackCatalog() as { data?: StackCatalogItem[] }
-    const { data: projectStack } = useProjectStack(projectId) as { data?: ProjectStackItem[] }
+    const { data: projectStack } = useProjectStack() as { data?: ProjectStackItem[] }
     const { mutate } = useUpdateProjectStack()
     const catalog = stackCatalog ?? EMPTY_STACK_CATALOG
     const savedStack = projectStack ?? EMPTY_PROJECT_STACK
@@ -82,7 +82,7 @@ export default function TechStackSettings({ projectId }: { projectId: string }) 
             name: item.name,
         }))
 
-        mutate({ projectId, updates })
+        mutate({ updates })
     }
 
     return (

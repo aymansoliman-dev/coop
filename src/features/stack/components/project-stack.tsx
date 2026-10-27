@@ -7,8 +7,8 @@ function getDeviconUrl(name: string) {
     return `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${name}/${name}-original.svg`
 }
 
-export function ProjectStack({ projectId }: { projectId: string }) {
-    const { data: stack = [] } = useProjectStack(projectId)
+export function ProjectStack() {
+    const { data: stack = [] } = useProjectStack()
 
     return (
         <ul className="flex items-center gap-2 select-none">
