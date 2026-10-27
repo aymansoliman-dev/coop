@@ -1,6 +1,6 @@
 'use client'
 
-import { useParams, useRouter, useSearchParams } from 'next/navigation'
+import { useParams } from 'next/navigation'
 import { useProject } from '@/features/projects/hooks/useProject'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui/tabs'
 import ProjectOverview from '@/features/projects/components/project-overview'
@@ -10,12 +10,11 @@ import { EmptyPage } from '@/shared/components/empty-page'
 import { getSelectionForeground } from '@/shared/lib/utils' 
 import { BoltIcon } from 'lucide-react'
 import { KBD } from '@/shared/components/kbd'
-import { useMe } from '@/features/auth/hooks/use-me'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 
 export default function Project() {
-    const { projectId } = useParams<{ projectId: string }>()
-    const { data: project = {}, isError } = useProject(projectId)
+    const { projectId } = useParams()
+    const { data: project = {}, isError } = useProject()
     const settingsTabRef = useRef<HTMLButtonElement>(null)
 
     if (isError) return <div className="w-full h-full flex justify-center items-center"><EmptyPage /></div>
@@ -48,15 +47,15 @@ export default function Project() {
                     </TabsList>
 
                     <TabsContent value="overview">
-                        <ProjectOverview projectId={projectId} className="mt-5" />
+                        <ProjectOverview className="mt-5" />
                     </TabsContent>
 
                     <TabsContent value="settings" className="min-h-0 overflow-hidden">
-                        <ProjectSettings projectId={projectId} />
+                        <ProjectSettings />
                     </TabsContent>
                 </Tabs>
 
-                : <ProjectOverview projectId={projectId} />
+                : <ProjectOverview />
             }
         </div>
     )

@@ -5,15 +5,16 @@ import { ProjectCollaborators } from '@/features/collaborations/components/proje
 import { ProjectStack } from '@/features/stack/components/project-stack'
 import { TasksTable } from '@/features/tasks/components/tasks-table'
 import Image from 'next/image'
+import { cn } from 'cn'
 
 
-export default function ProjectOverview({ projectId }: { projectId: string }) {
+export default function ProjectOverview({ className }: { className?: string }) {
 
-    const { data: project = {}, isPending } = useProject(projectId)
+    const { data: project = {}, isPending } = useProject()
 
     return (
-        <div className="flex flex-col h-full">
-            <div className="relative z-20 flex items-center gap-4 py-8 px-4 lg:px-8 mt-5">
+        <div className={cn(className, "flex flex-col h-full")}>
+            <div className="relative z-20 flex items-center gap-4 py-8 px-4 lg:px-8">
                 <div className="w-24 aspect-square overflow-hidden rounded-2xl select-none">
                     {
                         isPending ?
@@ -24,14 +25,14 @@ export default function ProjectOverview({ projectId }: { projectId: string }) {
                 </div>
                 <div className="flex flex-col gap-4">
                     <h2 className="text-5xl font-bold">{project.name}</h2>
-                    <ProjectStack projectId={projectId} />
+                    <ProjectStack />
                 </div>
             </div>
             <div className="flex border mx-4 lg:mx-8">
                 <ProjectStatement statement={project.statement} />
-                <ProjectCollaborators projectId={projectId} />
+                <ProjectCollaborators />
             </div>
-            <TasksTable projectId={projectId} />
+            <TasksTable />
         </div>
     )
 }

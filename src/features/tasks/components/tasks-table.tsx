@@ -77,6 +77,7 @@ import {
   PriorityIcon,
   normalizePriority,
 } from "@/assets/icons/priority-icon"
+import { useParams } from "next/navigation"
 
 /* -------------------------------------------------------------------------- */
 /* Types                                                                      */
@@ -479,10 +480,11 @@ function TaskDrawer({
 /* Table                                                                      */
 /* -------------------------------------------------------------------------- */
 
-export function TasksTable({ projectId }: TasksTableProps) {
+export function TasksTable() {
+  const { projectId } = useParams()
   const storageKey = `tasks-order:${projectId}`
 
-  const { data: tasks = NO_TASKS, isPending, error } = useTasks(projectId)
+  const { data: tasks = NO_TASKS, isPending, error } = useTasks()
   const deleteTask = useDeleteTask()
 
   function handleDelete(taskId: string) {
@@ -682,7 +684,7 @@ export function TasksTable({ projectId }: TasksTableProps) {
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
-          <AddTaskForm projectId={projectId} />
+          <AddTaskForm />
         </div>
       </div>
 
