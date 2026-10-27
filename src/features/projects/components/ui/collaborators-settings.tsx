@@ -1,7 +1,7 @@
 import { Button } from "@/shared/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader } from "@/shared/components/ui/card";
 
-export default function CollaboratorsSettings({ projectId }: { projectId: string }) {
+export default function CollaboratorsSettings() {
     return (
         <Card id="project-collaborators" className="rounded-none">
             <CardHeader className="text-2xl font-bold">Collaborators</CardHeader>

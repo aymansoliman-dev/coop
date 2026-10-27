@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader } from "@/shared/components/ui/card";
 
-export default function AssetsSettings({ projectId }: { projectId: string }) {
+export default function AssetsSettings() {
     return (
         <Card id="assets" className="rounded-none py-0 block *:p-3 md:*:p-4">
 

@@ -1,7 +1,7 @@
 import { Button } from "@/shared/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader } from "@/shared/components/ui/card";
 
-export default function DangerZoneSettings({ projectId }: { projectId: string }) {
+export default function DangerZoneSettings() {
     return (
         <Card id="danger-zone" className="rounded-none">
             <CardHeader className="text-2xl font-bold">Danger Zone</CardHeader>
