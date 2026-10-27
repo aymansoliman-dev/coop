@@ -3,25 +3,22 @@ import { updateProject } from '@/features/projects/api'
 import { toast } from '@/shared/components/ui/toast'
 import { useRef } from 'react'
 import type { Project, ProjectUpdate } from '@/features/projects/types'
-
-type UpdateProjectVariables = {
-  projectId: string
-  updates: ProjectUpdate
-}
+import { useParams } from 'next/navigation'
 
 export function useUpdateProject() {
+  const { projectId } = useParams()
   const queryClient = useQueryClient()
   const toastIdRef = useRef<string | null>(null)
 
   return useMutation({
-    mutationFn: ({ projectId, updates }: UpdateProjectVariables) => updateProject(projectId, updates),
+    mutationFn: ({ updates }: { updates: ProjectUpdate }) => updateProject(projectId as string, updates),
     onMutate: () => {
       toastIdRef.current = toast.add({
         type: 'loading',
         description: 'Updating project...',
       })
     },
-    onSuccess: (data, { projectId }) => {
+    onSuccess: (data) => {
       const updatedProject = data?.project
 
       if (updatedProject) {
@@ -44,7 +41,7 @@ export function useUpdateProject() {
         })
       }
     },
-    onError: (error: any) => {
+    onError: (error: Error) => {
       if (toastIdRef.current !== null) {
         toast.update(toastIdRef.current, {
           type: 'error',

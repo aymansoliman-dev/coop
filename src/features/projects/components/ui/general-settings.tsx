@@ -3,7 +3,7 @@
 import { useProject } from '@/features/projects/hooks/useProject'
 import { useUpdateProject } from '@/features/projects/hooks/use-update-project'
 import { Controller, useForm, SubmitHandler } from 'react-hook-form'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { z } from 'zod'
 import { 
     Card, 
@@ -30,10 +30,9 @@ const schema = z.object({
 
 type Fields = z.infer<typeof schema>;
 
-export default function GeneralSettings({ projectId }: { projectId: string }) {
-    const { data: project, isError } = useProject(projectId)
+export default function GeneralSettings() {
+    const { data: project } = useProject()
     const { mutate } = useUpdateProject()
-    const [isMounted, setIsMounted] = useState(false)
 
     const { control, formState: { isDirty, dirtyFields, isLoading }, handleSubmit, register, reset } = useForm<Fields>({
         defaultValues: {
@@ -44,10 +43,6 @@ export default function GeneralSettings({ projectId }: { projectId: string }) {
             private: project?.private ?? false
         },
     })
-
-    useEffect(() => {
-        setIsMounted(true)
-    }, [])
 
     useEffect(() => {
         if (!project) return
@@ -71,17 +66,14 @@ export default function GeneralSettings({ projectId }: { projectId: string }) {
         })
     }
 
-    const onSubmit: SubmitHandler<Fields> = async (data) => {
+    const onSubmit: SubmitHandler<Fields> = async (data) => {   
         const updates = Object.fromEntries(
             Object.keys(dirtyFields).map((field) =>[field, data[field as keyof Fields]
             ])
         )
-
-        mutate({ projectId, updates })
+  
+        mutate({ updates })
     }
-
-    const resetDisabled = isMounted && !isDirty ? true : undefined
-    const saveDisabled = isMounted && (!isDirty || isLoading) ? true : undefined
 
     return (
         <Card id="general" className="rounded-none py-0 block *:p-3 md:*:p-4">
@@ -119,7 +111,7 @@ export default function GeneralSettings({ projectId }: { projectId: string }) {
             </CardHeader>
             <CardDescription className="px-(--card-spacing) py-0!">Shown on the project header and in the sidebar.</CardDescription>
             <CardContent>
-                <form id="general-settings-form" onSubmit={handleSubmit(onSubmit)}>
+                <form method="POST" id="general-settings-form" onSubmit={handleSubmit(onSubmit)}>
                     <FieldGroup>
                         <div className="flex justify-between gap-2">
                             <Field className="flex-row gap-0 border">
@@ -143,8 +135,8 @@ export default function GeneralSettings({ projectId }: { projectId: string }) {
                 </form>
             </CardContent>
             <CardFooter className="justify-end rounded-none p-0! *:px-8">
-                <Button type="button" variant="secondary" onClick={resetToProjectDefaults} disabled={resetDisabled}>Reset</Button>
-                <Button type="submit" form="general-settings-form" disabled={saveDisabled}>Save</Button>
+              <Button type="button" variant="secondary" onClick={resetToProjectDefaults} disabled={!isDirty || isLoading}>Reset</Button>
+                <Button type="submit" form="general-settings-form" disabled={!isDirty || isLoading}>Save</Button>
             </CardFooter>
         </Card>
     )
