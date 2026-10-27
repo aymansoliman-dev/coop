@@ -11,7 +11,7 @@ import Image from "next/image"
 const EMPTY_STACK_CATALOG: StackCatalogItem[] = []
 
 export function TaskStackField() {
-  const { data: stackCatalog } = useStackCatalog() as { data?: StackCatalogItem[] }
+  const { data: stackCatalog = [] } = useStackCatalog() as { data?: StackCatalogItem[] }
   const catalog = stackCatalog ?? EMPTY_STACK_CATALOG
   
   const techFirstCatalog = useMemo(() => {
@@ -42,7 +42,7 @@ export function TaskStackField() {
                 autoHighlight
                 items={techFirstCatalog}
                 limit={32}
-                value={field.value}
+                value={field.value ?? []}
                 onValueChange={field.onChange}
                 itemToStringLabel={(item) => item.name}
                 itemToStringValue={(item) => item.name}
