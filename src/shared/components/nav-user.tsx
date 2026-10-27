@@ -7,7 +7,7 @@ import { LogoutIcon } from "@/assets/icons"
 import { useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "@/shared/components/ui/toast";
-import { useAuthUser } from "@/features/auth/hooks/useAuthUser"
+import { useMe } from "@/features/auth/hooks/use-me"
 import { avatarFallbackText } from "@/shared/lib/utils"
 import { UserSkeleton } from "@/features/auth/components/ui/user-skeleton"
 
@@ -23,18 +23,16 @@ export function NavUser() {
     })
   }, [router])
 
-  const { data: user, isPending } = useAuthUser()
-
+  const { data: me, isPending } = useMe()
   if (isPending) return <UserSkeleton />
-
-  if (!user) return null
+  if (!me) return null
 
   return (
     <div className="h-full aspect-square border-l">  
       <DropdownMenu>
         <DropdownMenuTrigger className="p-0 h-full w-full">
           <Avatar className="h-full w-full grayscale">
-            { user.avatar ? <AvatarImage src={user.avatar} alt={user.name} /> : <AvatarFallback>{avatarFallbackText(user.name)}</AvatarFallback>}
+            { me.avatar ? <AvatarImage src={me.avatar} alt={me.name} /> : <AvatarFallback>{avatarFallbackText(me.name)}</AvatarFallback>}
           </Avatar>
         </DropdownMenuTrigger>
         <DropdownMenuContent
@@ -47,12 +45,12 @@ export function NavUser() {
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="size-8">
-                  { user.avatar ? <AvatarImage src={user.avatar} alt={user.name} /> : <AvatarFallback className="rounded-lg">{avatarFallbackText(user.name)}</AvatarFallback>}
+                  { me.avatar ? <AvatarImage src={me.avatar} alt={me.name} /> : <AvatarFallback className="rounded-lg">{avatarFallbackText(me.name)}</AvatarFallback>}
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">{user.name}</span>
+                  <span className="truncate font-medium">{me.name}</span>
                   <span className="truncate text-xs text-muted-foreground">
-                    {user.email}
+                    {me.email}
                   </span>
                 </div>
               </div>
