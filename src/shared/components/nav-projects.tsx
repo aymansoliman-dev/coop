@@ -1,37 +1,21 @@
 "use client"
 
-import { useCallback, useState } from 'react'
-import { SidebarGroup, SidebarGroupLabel, SidebarMenuButton, SidebarMenuItem } from "@/shared/components/ui/sidebar"
+import { useState } from 'react'
+import { SidebarGroup, SidebarGroupLabel, SidebarMenuButton } from "@/shared/components/ui/sidebar"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/shared/components/ui/collapsible"
-import { ChevronRightIcon, TrashIcon, SettingsIcon } from "@/assets/icons"
-import { MoreVerticalIcon } from '@/assets/icons'
 import { ProjectsIcon, BoxIcon } from '@/assets/icons/'
 import { useProjectsList } from '@/features/projects/hooks/useProjectsList'
+import { type Project } from '@/features/projects/types'
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from 'next/navigation'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu'
-import { useAuthUser } from '@/features/auth/hooks/useAuthUser'
-import { useDeleteProject } from '@/features/projects/hooks/useDeleteProject'
 import { ScrollArea } from '@/shared/components/ui/scroll-area'
-import { useRouter } from 'next/navigation'
 
 export function NavProjects() {
   const [isOpen, setIsOpen] = useState(false)
   const { data: projectsList } = useProjectsList()
   const pathname = usePathname()
   const currentProjectId = pathname.match(/^\/projects\/([^/]+)/)?.[1]
-  const { data: authenticatedUser } = useAuthUser()
-  const { mutate } = useDeleteProject()
-  const router = useRouter()
-
-  const deleteProject = useCallback((projectId: string) => {
-    mutate(projectId)
-  }, [mutate])
-
-  const goToProjectSettings = useCallback((projectId: string) => {
-    router.push(`/projects/${projectId}?tab=settings`)
-  }, [])
 
   if (!projectsList) return null         
 
@@ -61,7 +45,7 @@ export function NavProjects() {
             <CollapsibleContent className="grow space-y-1 static transition-all data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down right-0 left-0 px-0">
               <ScrollArea className="h-72 outline group-data-[collapsible=icon]:outline-none scroll-fade-b">
                 <ul>
-                  {projectsList.map((project: any) => (
+                  {projectsList.map((project: Project) => (
                       <SidebarMenuButton key={project.id} tooltip={project.name} className="h-12 p-0 gap-0" isActive={project.id === currentProjectId} render={
                         <div className="project-link flex items-center justify-between w-full">
                           <Link href={`/projects/${project.id}`} className="flex items-center grow h-full">
