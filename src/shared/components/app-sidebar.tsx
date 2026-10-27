@@ -1,28 +1,36 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 
-import { NavMain } from "@/shared/components/nav-main"
-import { NavProjects } from "@/shared/components/nav-projects"
-import { NavSecondary } from "@/shared/components/nav-secondary"
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenuButton } from "@/shared/components/ui/sidebar"
-import { CameraIcon, FileTextIcon, DatabaseIcon, FileChartColumnIcon, FileIcon } from "lucide-react"
-import { LogoutIcon } from "@/assets/icons"
-import { LayoutDashboardIcon } from "@/assets/icons"
-import Image from 'next/image'
-import { NewProjectForm } from "@/features/projects/components/new-project-form"
-import { useRouter } from "next/navigation"
-import { useCallback } from "react"
-import { toast } from "./ui/toast"
+import { NavMain } from "@/shared/components/nav-main";
+import { NavProjects } from "@/shared/components/nav-projects";
+import { NavSecondary } from "@/shared/components/nav-secondary";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarMenuButton,
+} from "@/shared/components/ui/sidebar";
+import {
+  CameraIcon,
+  FileTextIcon,
+  DatabaseIcon,
+  FileChartColumnIcon,
+  FileIcon,
+} from "lucide-react";
+import { LogoutIcon } from "@/assets/icons";
+import { LayoutDashboardIcon } from "@/assets/icons";
+import Image from "next/image";
+import { NewProjectForm } from "@/features/projects/components/new-project-form";
+import { useLogout } from "@/features/auth/hooks/use-logout";
 
 const data = {
   navMain: [
     {
       title: "Dashboard",
       url: "/dashboard",
-      icon: (
-        <LayoutDashboardIcon />
-      ),
+      icon: <LayoutDashboardIcon />,
     },
     // {
     //   title: "Projects",
@@ -44,10 +52,7 @@ const data = {
   navClouds: [
     {
       title: "Capture",
-      icon: (
-        <CameraIcon
-        />
-      ),
+      icon: <CameraIcon />,
       isActive: true,
       url: "#",
       items: [
@@ -63,10 +68,7 @@ const data = {
     },
     {
       title: "Proposal",
-      icon: (
-        <FileTextIcon
-        />
-      ),
+      icon: <FileTextIcon />,
       url: "#",
       items: [
         {
@@ -81,10 +83,7 @@ const data = {
     },
     {
       title: "Prompts",
-      icon: (
-        <FileTextIcon
-        />
-      ),
+      icon: <FileTextIcon />,
       url: "#",
       items: [
         {
@@ -102,67 +101,58 @@ const data = {
     {
       name: "Data Library",
       url: "#",
-      icon: (
-        <DatabaseIcon
-        />
-      ),
+      icon: <DatabaseIcon />,
     },
     {
       name: "Reports",
       url: "#",
-      icon: (
-        <FileChartColumnIcon
-        />
-      ),
+      icon: <FileChartColumnIcon />,
     },
     {
       name: "Word Assistant",
       url: "#",
-      icon: (
-        <FileIcon
-        />
-      ),
+      icon: <FileIcon />,
     },
   ],
-}
+};
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const router = useRouter();
-  
-  const handleLogout = useCallback(() => {
-    localStorage.removeItem("token")
-    router.push("/login")
-    toast.add({
-      type: "success",
-      description: "Logged out",
-    })
-  }, [router])
+  const logout = useLogout();
 
   return (
     <Sidebar className="select-none" collapsible="offcanvas" {...props}>
       <SidebarHeader className="flex-row items-center gap-4 border-b h-12 md:h-(--header-height) px-4">
         {/*<CommandIcon className="size-5!" />*/}
-        <Image src="https://res.cloudinary.com/dxlofja7z/image/upload/v1789662878/coop_dhxvx8.svg" width={20} height={20} alt="coop logo" loading="eager" />
+        <Image
+          src="https://res.cloudinary.com/dxlofja7z/image/upload/v1789662878/coop_dhxvx8.svg"
+          width={20}
+          height={20}
+          alt="coop logo"
+          loading="eager"
+        />
         <span className="group-data-[collapsible=icon]:hidden">coop</span>
       </SidebarHeader>
-      {/**/}
+
       <SidebarContent>
         <NavMain />
-        {/*  */}
         <NavProjects />
-        {/*  */}
         <NavSecondary className="mt-auto" />
       </SidebarContent>
-      {/**/}
+
       <SidebarFooter className="gap-0">
         <NewProjectForm />
-        {/*  */}
-        <SidebarMenuButton className="h-12 p-0 gap-0" tooltip="Logout" onClick={handleLogout} >
+        <SidebarMenuButton
+          className="h-12 p-0 gap-0"
+          tooltip="Logout"
+          onClick={() => logout()}
+        >
           <div className="w-12 p-4">
             <LogoutIcon />
           </div>
-          <span className="group-data-[collapsible=icon]:hidden h-full grow flex items-center">Logout</span>
+          <span className="group-data-[collapsible=icon]:hidden h-full grow flex items-center">
+            Logout
+          </span>
         </SidebarMenuButton>
       </SidebarFooter>
     </Sidebar>
-  )
+  );
 }
